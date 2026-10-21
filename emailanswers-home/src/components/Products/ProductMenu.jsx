@@ -1,4 +1,4 @@
-import "./product.css";
+import "./Products.css";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { PROTECT, VERIFY } from "../../data/products";
 import Icon from "./Icon";

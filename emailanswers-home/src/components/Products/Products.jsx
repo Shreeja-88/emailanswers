@@ -1,4 +1,4 @@
-import "./product.css";
+import "./Products.css";
 import ProductShowcase from "./ProductShowcase";
 import ProtectList from "./ProtectList";
 
