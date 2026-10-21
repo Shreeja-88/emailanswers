@@ -1,12 +1,15 @@
-import "./Products.css";
+import "./product.css";
+import ProductShowcase from "./ProductShowcase";
+import ProtectList from "./ProtectList";
 
-function Products() {
+// The whole Product part of the page: interactive showcase + the Protect list.
+export default function Product() {
   return (
-    <section id="products">
-      <h2>Our Products</h2>
-      <p>Products section content goes here.</p>
-    </section>
+    <>
+      <ProductShowcase />
+      <ProtectList />
+    </>
   );
 }
 
-export default Products;
+export { default as ProductMenu } from "./ProductMenu";
