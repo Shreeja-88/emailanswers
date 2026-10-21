@@ -1,0 +1,12 @@
+import "./HowItWorks.css";
+
+function HowItWorks() {
+  return (
+    <section id="how-it-works">
+      <h2>How It Works</h2>
+      <p>How it works section content goes here.</p>
+    </section>
+  );
+}
+
+export default HowItWorks;
