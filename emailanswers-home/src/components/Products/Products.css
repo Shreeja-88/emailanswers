@@ -1,0 +1,95 @@
+/* ============ PRODUCT PART: theme tokens, keyframes, effects ============
+   Colors/fonts come from sir's emailanswers-home.html. Change them here, in one place. */
+.pr-root {
+  --pr-bg: #121212; --pr-surface: #1a1a1a; --pr-surface2: #202020; --pr-line: #2c2c2c;
+  --pr-text: #f5f5f4; --pr-muted: #9b9b98; --pr-dim: #6d6d6a;
+  --pr-orange: #f26b1d; --pr-orange2: #ff9a4d; --pr-deep: #c9480e;
+  --pr-green: #3ecf8e; --pr-red: #ff5b5b; --pr-amber: #f5b83d;
+  font-family: 'Inter Tight', system-ui, sans-serif; color: var(--pr-text);
+}
+.pr-script { font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400; letter-spacing: 0; }
+.pr-mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+.pr-grad { background: linear-gradient(90deg, var(--pr-orange2), var(--pr-orange)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+
+.pr-card { background: var(--pr-surface); border: 1px solid var(--pr-line); border-radius: 18px; }
+.pr-btn { display: inline-flex; align-items: center; gap: 8px; border-radius: 10px; padding: 10px 16px; font-size: 14px; font-weight: 600; color: #1a0d05;
+  background: linear-gradient(180deg, var(--pr-orange2), var(--pr-orange)); box-shadow: 0 8px 30px -8px rgba(242,107,29,.6), inset 0 1px 0 rgba(255,255,255,.35); transition: transform .2s, filter .2s; }
+.pr-btn:hover { transform: translateY(-1px); filter: brightness(1.06); }
+.pr-btn:disabled { opacity: .6; transform: none; }
+.pr-btn-ghost { display: inline-flex; align-items: center; gap: 6px; border-radius: 10px; padding: 7px 12px; font-size: 12px; font-weight: 600; color: var(--pr-text); border: 1px solid var(--pr-line); background: var(--pr-surface2); transition: border-color .2s; }
+.pr-btn-ghost:hover { border-color: #555; }
+
+/* chips (same look as sir's .chip) */
+.pr-chip { display: inline-flex; align-items: center; gap: 6px; width: max-content; white-space: nowrap; font-size: 12px; font-weight: 600; padding: 4px 10px; border-radius: 999px; }
+.pr-chip-ok { background: rgba(62,207,142,.12); color: var(--pr-green); }
+.pr-chip-bad { background: rgba(255,91,91,.12); color: var(--pr-red); }
+.pr-chip-ca { background: rgba(245,184,61,.12); color: var(--pr-amber); }
+.pr-chip-ans { background: rgba(242,107,29,.15); color: var(--pr-orange2); }
+.pr-chip-idle { background: rgba(255,255,255,.06); color: var(--pr-dim); }
+.pr-dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; animation: pr-ping 1s ease-in-out infinite; }
+
+/* ---------- keyframes ---------- */
+@keyframes pr-rise { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+@keyframes pr-pop { 0% { opacity: 0; transform: scale(.7); } 60% { transform: scale(1.08); } 100% { opacity: 1; transform: none; } }
+@keyframes pr-blink { 50% { opacity: 0; } }
+@keyframes pr-ping { 50% { opacity: .25; transform: scale(.7); } }
+@keyframes pr-travel { from { left: 0; opacity: 0; } 10%, 90% { opacity: 1; } to { left: calc(100% - 10px); opacity: 0; } }
+@keyframes pr-travel-rev { from { left: calc(100% - 10px); opacity: 0; } 10%, 90% { opacity: 1; } to { left: 0; opacity: 0; } }
+@keyframes pr-drift-a { 0%, 100% { transform: translate(0,0) scale(1); } 50% { transform: translate(60px,-40px) scale(1.15); } }
+@keyframes pr-drift-b { 0%, 100% { transform: translate(0,0) scale(1); } 50% { transform: translate(-70px,30px) scale(1.1); } }
+@keyframes pr-scan { from { top: -10%; } to { top: 110%; } }
+@keyframes pr-fill { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@keyframes pr-marquee { to { transform: translateX(-50%); } }
+@keyframes pr-word { from { opacity: 0; transform: translateY(.55em); filter: blur(8px); } to { opacity: 1; transform: none; filter: blur(0); } }
+@keyframes pr-flash { from { background: rgba(242,107,29,.22); } to { background: transparent; } }
+@keyframes pr-slide-in { from { opacity: 0; transform: translateX(-18px) scale(.98); } to { opacity: 1; transform: none; } }
+@keyframes pr-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+
+.pr-rise { animation: pr-rise .5s cubic-bezier(.2,.7,.2,1) both; }
+.pr-pop { animation: pr-pop .4s cubic-bezier(.2,.9,.3,1.2) both; }
+.pr-caret { display: inline-block; width: 7px; height: 1.05em; margin-left: 2px; vertical-align: -2px; background: var(--pr-orange2); animation: pr-blink 1s steps(1) infinite; }
+.pr-slide { animation: pr-slide-in .5s cubic-bezier(.2,.7,.2,1) both; }
+.pr-flash { animation: pr-flash 1.2s ease-out both; }
+.pr-float { animation: pr-float 5s ease-in-out infinite; }
+
+/* scroll reveal + headline words */
+.pr-reveal { opacity: 0; transform: translateY(28px); transition: opacity .8s cubic-bezier(.2,.7,.2,1), transform .8s cubic-bezier(.2,.7,.2,1); }
+.pr-reveal.in { opacity: 1; transform: none; }
+.pr-word { display: inline-block; opacity: 0; }
+.in > .pr-word { animation: pr-word .8s cubic-bezier(.2,.7,.2,1) forwards; animation-delay: calc(var(--i) * 70ms); }
+
+/* packets on the CRM wires */
+.pr-packet { position: absolute; width: 10px; height: 10px; border-radius: 50%; animation: pr-travel 2.4s linear infinite; }
+.pr-packet-rev { animation-name: pr-travel-rev; }
+
+/* scanning beam over the check list */
+.pr-scan { position: absolute; left: 0; right: 0; height: 46px; pointer-events: none;
+  background: linear-gradient(180deg, transparent, rgba(255,154,77,.22), transparent); animation: pr-scan 1.6s linear infinite; }
+
+/* pointer-follow glowing border */
+.pr-spot { position: relative; }
+.pr-spot::before { content: ""; position: absolute; inset: 0; border-radius: inherit; padding: 1px; pointer-events: none; opacity: 0; transition: opacity .3s;
+  background: radial-gradient(240px circle at var(--mx, 50%) var(--my, 50%), rgba(255,154,77,.9), transparent 65%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude; }
+.pr-spot:hover::before { opacity: 1; }
+
+/* section atmosphere: "+" pattern like the reference + drifting blue/orange glows */
+.pr-plus { background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='30' height='30'><path d='M15 12v6M12 15h6' stroke='%23f26b1d' stroke-opacity='.32' stroke-width='1'/></svg>");
+  -webkit-mask-image: linear-gradient(#000, transparent 55%); mask-image: linear-gradient(#000, transparent 55%); }
+.pr-blob-a { animation: pr-drift-a 14s ease-in-out infinite; }
+.pr-blob-b { animation: pr-drift-b 17s ease-in-out infinite; }
+
+.pr-marquee-track { display: flex; gap: 14px; width: max-content; animation: pr-marquee 38s linear infinite; }
+.pr-marquee { -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); overflow: hidden; }
+
+@media (prefers-reduced-motion: reduce) {
+  .pr-rise, .pr-pop, .pr-caret, .pr-slide, .pr-flash, .pr-float, .pr-packet, .pr-scan, .pr-blob-a, .pr-blob-b, .pr-marquee-track, .pr-dot { animation: none !important; }
+  .pr-reveal { opacity: 1; transform: none; transition: none; }
+  .pr-word { opacity: 1; }
+  .in > .pr-word { animation: none; }
+}
+
+.pr-bg-grad { background: linear-gradient(180deg, var(--pr-orange2), var(--pr-orange)); }
+.pr-bg-grad-r { background: linear-gradient(90deg, var(--pr-orange2), var(--pr-orange)); }
+.pr-tabbar { border: 1px solid rgba(242,107,29,.6); background: linear-gradient(160deg, rgba(255,154,77,.16), rgba(242,107,29,.06));
+  box-shadow: 0 20px 50px -25px rgba(242,107,29,.7); }
