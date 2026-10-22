@@ -1,6 +1,17 @@
 /* ==========================================================
-   EmailAnswers AI - Award-Winning Cinematic Pricing Stylesheet
+   EmailAnswers AI - Cyber-Anime / GSAP Powered Pricing Stylesheet
    ========================================================== */
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
 
 .pricing-section-wrapper {
   position: relative;
@@ -34,7 +45,7 @@
   left: var(--mouse-x, 0px);
   width: 400px;
   height: 400px;
-  background: radial-gradient(circle, rgba(255, 107, 53, 0.22) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(255, 107, 53, 0.25) 0%, transparent 70%);
   transform: translate(-50%, -50%);
   pointer-events: none;
   opacity: 0;
@@ -47,6 +58,27 @@
 .pricing-hero-banner:hover .spotlight-glow,
 .payg-layout-grid:hover .spotlight-glow {
   opacity: 1;
+}
+
+/* Power Core Reactor Ring Animation */
+.power-core-card {
+  border-color: rgba(255, 107, 53, 0.6) !important;
+  box-shadow: 0 0 30px rgba(255, 107, 53, 0.2), inset 0 0 20px rgba(255, 107, 53, 0.1) !important;
+}
+
+.core-reactor-ring {
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  border: 1px dashed rgba(255, 107, 53, 0.7);
+  pointer-events: none;
+  animation: reactorSpin 12s linear infinite;
+  z-index: 4;
+}
+
+@keyframes reactorSpin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 
 /* Animated Cyber Atmosphere & Radar Waves */
@@ -215,37 +247,61 @@
   font-weight: 500;
 }
 
-/* Right Side Visuals for Banner */
+/* 3D Cyber Node Graphic */
 .hero-banner-visuals {
   position: relative;
   width: 100%;
-  max-width: 440px;
+  max-width: 400px;
+  height: 280px;
   flex-shrink: 0;
   z-index: 4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.visual-image-card {
+.cyber-3d-node-card {
   position: relative;
-  width: 100%;
-  height: 260px;
-  border-radius: 20px;
-  overflow: hidden;
-  border: 1px solid rgba(255, 107, 53, 0.3);
-  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8), 0 0 30px rgba(255, 107, 53, 0.15);
-  background: #111;
+  width: 240px;
+  height: 240px;
+  background: rgba(15, 15, 18, 0.9);
+  border: 1px solid rgba(255, 107, 53, 0.4);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 50px rgba(255, 107, 53, 0.25), inset 0 0 30px rgba(255, 107, 53, 0.15);
 }
 
-.visual-image-card img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  filter: saturate(90%) brightness(90%);
-  transition: transform 0.6s ease;
+.node-grid-lines {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(255, 107, 53, 0.2) 1px, transparent 1px);
+  background-size: 20px 20px;
+  border-radius: 50%;
+  opacity: 0.6;
 }
 
-.visual-image-card:hover img {
-  transform: scale(1.05);
+.node-pulse-core {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  background: radial-gradient(circle, rgba(255, 107, 53, 0.5) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: corePulse 3s infinite ease-in-out;
+}
+
+@keyframes corePulse {
+  0% { transform: scale(0.9); opacity: 0.5; }
+  50% { transform: scale(1.2); opacity: 1; }
+  100% { transform: scale(0.9); opacity: 0.5; }
+}
+
+.node-svg-graphic {
+  width: 160px;
+  height: 160px;
+  z-index: 2;
+  filter: drop-shadow(0 0 10px #ff6b35);
 }
 
 .visual-glow-overlay {
@@ -253,6 +309,7 @@
   inset: 0;
   background: radial-gradient(circle, transparent 40%, rgba(255, 107, 53, 0.25) 100%);
   pointer-events: none;
+  border-radius: 50%;
 }
 
 .floating-preview-badge {
@@ -270,7 +327,7 @@
 }
 
 .badge-top {
-  bottom: -20px;
+  bottom: 0px;
   left: -20px;
 }
 
@@ -403,7 +460,7 @@
   padding: 0.3rem 0.85rem;
   border-radius: 9999px;
   box-shadow: 0 5px 15px rgba(255, 107, 53, 0.4);
-  z-index: 4;
+  z-index: 5;
 }
 
 .card-top-info {
@@ -500,7 +557,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  z-index: 4;
+  z-index: 5;
 }
 
 .payg-top-label-row {
@@ -536,7 +593,7 @@
 
 .payg-price-display { display: flex; align-items: baseline; gap: 0.3rem; margin-bottom: 0.5rem; }
 .payg-currency { font-size: 2.5rem; font-weight: 700; color: #ff6b35; }
-.payg-big-number { font-size: 4.5rem; font-weight: 800; color: #f5f5f5; line-height: 1; letter-spacing: -0.03em; }
+.payg-big-number { font-size: 4.5rem; font-weight: 800; color: #f5f5f5; line-height: 1; letter-spacing: -0.03em; display: inline-block; }
 .payg-rate-breakdown { font-size: 0.88rem; color: #a1a1aa; margin-bottom: 3rem; }
 
 /* Range Slider */
@@ -593,7 +650,7 @@
 .payg-card-note { font-size: 0.85rem; color: #71717a; }
 
 /* NeverBounce Comparison Pane */
-.payg-perks-pane { display: flex; flex-direction: column; gap: 1.5rem; justify-content: center; z-index: 4; }
+.payg-perks-pane { display: flex; flex-direction: column; gap: 1.5rem; justify-content: center; z-index: 5; }
 .comparison-card-box {
   background: rgba(15, 15, 17, 0.95);
   border: 1px solid rgba(255, 255, 255, 0.08);
@@ -691,7 +748,7 @@
 .col-comp { color: #a1a1aa; }
 .col-diff { font-weight: 600; color: #34d399; }
 
-/* --- BENTO IMAGE-RICH VALUE GRID --- */
+/* --- BENTO 3D VECTOR VALUE GRID --- */
 .pricing-bento-section { margin-top: 8rem; }
 .pricing-bento-header {
   display: flex;
@@ -735,23 +792,33 @@
   box-shadow: 0 35px 70px rgba(0, 0, 0, 0.8), 0 0 30px rgba(255, 107, 53, 0.15);
 }
 
-.bento-image-wrap {
+.bento-vector-art-wrap {
   position: relative;
   width: 100%;
-  height: 200px;
+  height: 180px;
+  background: rgba(15, 15, 18, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
   overflow: hidden;
 }
 
-.bento-image-wrap img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  filter: saturate(80%) brightness(85%);
-  transition: transform 0.6s ease;
+.cyber-node-circle {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  border: 1px dashed rgba(255, 107, 53, 0.4);
+  border-radius: 50%;
+  animation: reactorSpin 15s linear infinite;
 }
 
-.pricing-bento-card:hover .bento-image-wrap img {
-  transform: scale(1.06);
+.bento-svg-icon {
+  width: 50px;
+  height: 50px;
+  color: #ff6b35;
+  z-index: 2;
+  filter: drop-shadow(0 0 10px #ff6b35);
 }
 
 .bento-floating-tag {
@@ -788,4 +855,1323 @@
   color: #a1a1aa;
   line-height: 1.6;
   margin: 0;
+}
+
+/* Anime.js ambient particles */
+.pricing-particle {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: #ff824f;
+  box-shadow: 0 0 12px rgba(255, 107, 53, 0.85);
+  opacity: 0.35;
+  pointer-events: none;
+}
+
+
+/* Refined motion and benchmark states */
+.pricing-particle {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: #ff8b59;
+  box-shadow: 0 0 12px rgba(255, 107, 53, .7);
+  pointer-events: none;
+  opacity: .35;
+}
+.benchmark-unavailable {
+  color: #a1a1aa !important;
+  font-size: .78rem;
+  text-decoration: none !important;
+}
+.benchmark-note {
+  color: #b0adb2 !important;
+  font-size: .78rem;
+  line-height: 1.55;
+  padding: .8rem .9rem;
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 10px;
+  background: rgba(255,255,255,.025);
+}
+.pricing-section-wrapper .validity-card,
+.pricing-section-wrapper .pricing-bento-card,
+.pricing-section-wrapper .pricing-hero-banner,
+.pricing-section-wrapper .payg-layout-grid {
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+}
+.pricing-section-wrapper .hero-banner-btn,
+.pricing-section-wrapper .payg-signup-btn,
+.pricing-section-wrapper .plan-action-btn {
+  transition: transform .28s cubic-bezier(.2,.8,.2,1), box-shadow .28s ease, border-color .28s ease;
+}
+.pricing-section-wrapper .hero-banner-btn:hover,
+.pricing-section-wrapper .payg-signup-btn:hover,
+.pricing-section-wrapper .plan-action-btn:hover {
+  transform: translateY(-3px);
+}
+.pricing-section-wrapper :is(a, button, input):focus-visible {
+  outline: 2px solid #ff956b;
+  outline-offset: 4px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .pricing-section-wrapper *,
+  .pricing-section-wrapper *::before,
+  .pricing-section-wrapper *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+
+/* ==========================================================
+   EMBERFLOW VISUAL DIRECTION — cinematic black + ember orange
+   Soft atmospheric bloom, fine ember pattern and animated wave ribbons.
+   ========================================================== */
+.pricing-section-wrapper {
+  --ember-orange: #ff5a1f;
+  --ember-hot: #ff7b35;
+  --ember-cream: #f8f4f0;
+  --ember-muted: #aaa6a3;
+  position: relative;
+  isolation: isolate;
+  background:
+    radial-gradient(ellipse 58% 48% at 2% 42%, rgba(0, 133, 180, .22), transparent 72%),
+    radial-gradient(ellipse 54% 38% at 98% 85%, rgba(255, 90, 31, .31), transparent 72%),
+    radial-gradient(ellipse 36% 30% at 3% 8%, rgba(255, 72, 20, .17), transparent 75%),
+    #050505;
+  color: var(--ember-cream);
+}
+.pricing-section-wrapper::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: .42;
+  background-image:
+    radial-gradient(circle at center, rgba(255, 104, 48, .48) 1px, transparent 1.6px),
+    radial-gradient(circle at center, rgba(255, 104, 48, .16) 1px, transparent 1.6px);
+  background-size: 34px 34px, 34px 34px;
+  background-position: 0 0, 17px 17px;
+  mask-image: linear-gradient(to bottom, rgba(0,0,0,.8), transparent 78%);
+}
+.pricing-section-wrapper::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  pointer-events: none;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,.03) 0%, transparent 35%, rgba(0,0,0,.22) 100%);
+}
+.pricing-bg-atmosphere { z-index: 0; }
+.pricing-cyber-grid {
+  opacity: .16;
+  background-image:
+    linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: linear-gradient(to bottom, transparent 0%, black 24%, transparent 88%);
+}
+.pricing-glow-orb {
+  filter: blur(125px);
+  opacity: .23;
+  mix-blend-mode: screen;
+}
+.pricing-glow-orb.orb-1 {
+  width: min(54vw, 760px);
+  height: min(48vw, 680px);
+  top: 6%;
+  right: -18%;
+  background: #ff4d17;
+  opacity: .12;
+}
+.pricing-glow-orb.orb-2 {
+  width: min(62vw, 850px);
+  height: min(38vw, 560px);
+  bottom: -2%;
+  left: 18%;
+  background: #ff641f;
+  opacity: .22;
+}
+.pricing-ember-waves {
+  position: absolute;
+  left: -5%;
+  right: -5%;
+  top: 20%;
+  width: 110%;
+  height: clamp(260px, 42vw, 600px);
+  overflow: visible;
+  opacity: .72;
+  pointer-events: none;
+  filter: drop-shadow(0 0 12px rgba(255, 89, 28, .15));
+}
+.pricing-ember-waves svg { width: 100%; height: 100%; overflow: visible; }
+.ember-wave {
+  fill: none;
+  stroke: url(#emberWaveGradient);
+  stroke: rgba(255, 102, 44, .3);
+  stroke-width: 1.3;
+  vector-effect: non-scaling-stroke;
+}
+.ember-wave-a { stroke-width: 2; stroke: rgba(255, 96, 35, .34); }
+.ember-wave-b { stroke: rgba(255, 134, 66, .2); }
+.ember-wave-c { stroke: rgba(255, 87, 31, .25); }
+.ember-wave-d { stroke: rgba(255, 165, 90, .15); }
+.pricing-radar-wave {
+  width: min(90vw, 1180px);
+  height: min(90vw, 1180px);
+  top: 42%;
+  border-color: rgba(255, 112, 54, .08);
+}
+.pricing-hero-banner {
+  position: relative;
+  z-index: 1;
+  background:
+    radial-gradient(ellipse at 0% 100%, rgba(255, 89, 31, .10), transparent 46%),
+    linear-gradient(135deg, rgba(21,17,15,.82), rgba(8,8,8,.76) 58%, rgba(20,13,10,.88));
+  border: 1px solid rgba(255, 111, 61, .28);
+  border-radius: 30px;
+  box-shadow: 0 30px 100px rgba(0,0,0,.34), inset 0 1px 0 rgba(255,255,255,.035);
+  backdrop-filter: blur(18px);
+}
+.pricing-pill-badge {
+  border-color: rgba(255, 107, 53, .34);
+  background: rgba(255, 89, 31, .065);
+  color: #ff8a54;
+}
+.hero-banner-title {
+  font-family: "Space Grotesk", "DM Sans", sans-serif;
+  letter-spacing: -.055em;
+}
+.hero-banner-title span { color: #ff6a35; }
+.hero-banner-desc { color: #aaa6a4; }
+.hero-banner-btn, .payg-signup-btn, .plan-action-btn {
+  background: linear-gradient(115deg, #ff5b1f, #ff783b);
+  color: #fff !important;
+  box-shadow: 0 9px 28px rgba(255, 82, 27, .22);
+}
+.hero-banner-btn:hover, .payg-signup-btn:hover, .plan-action-btn:hover {
+  box-shadow: 0 14px 38px rgba(255, 82, 27, .34);
+}
+.validity-card, .pricing-bento-card, .payg-layout-grid, .comparison-card-box,
+.pricing-section-wrapper .pricing-content-box {
+  background: linear-gradient(145deg, rgba(22,22,22,.91), rgba(8,8,8,.94));
+  border-color: rgba(255,255,255,.09);
+  box-shadow: 0 20px 60px rgba(0,0,0,.22), inset 0 1px rgba(255,255,255,.025);
+}
+.validity-card:hover, .pricing-bento-card:hover {
+  border-color: rgba(255, 107, 53, .42);
+  box-shadow: 0 24px 60px rgba(0,0,0,.3), 0 0 36px rgba(255, 91, 31, .06);
+}
+.pricing-section-wrapper .pricing-particle {
+  background: #ff8a52;
+  box-shadow: 0 0 12px rgba(255, 106, 53, .8);
+}
+.pricing-section-wrapper .pricing-switcher-container,
+.pricing-section-wrapper .pricing-switcher-wrapper {
+  position: relative;
+  z-index: 1;
+}
+.pricing-section-wrapper .comparison-card-box {
+  border-radius: 17px;
+}
+.pricing-section-wrapper .comp-savings-banner {
+  background: linear-gradient(110deg, rgba(255, 91, 31, .12), rgba(255, 91, 31, .04));
+  border-color: rgba(255, 107, 53, .22);
+}
+.pricing-section-wrapper .pricing-bento-card {
+  backdrop-filter: blur(12px);
+}
+@media (max-width: 768px) {
+  .pricing-ember-waves { top: 27%; height: 360px; opacity: .48; }
+  .pricing-section-wrapper::before { background-size: 28px 28px, 28px 28px; }
+  .pricing-section-wrapper { padding-left: 1rem; padding-right: 1rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pricing-radar-wave, .core-reactor-ring { animation: none !important; }
+}
+
+
+/* ==========================================================
+   Pricing interaction refinement — premium Emberflow direction
+   ========================================================== */
+.pricing-section-wrapper {
+  --pricing-orange: #ff6b35;
+  --pricing-orange-bright: #ff824f;
+  --pricing-panel: rgba(19, 18, 18, 0.94);
+}
+
+.pricing-switcher-wrapper {
+  margin: 0 auto 2.25rem;
+  position: relative;
+  z-index: 5;
+}
+
+.pricing-switcher-container {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px;
+  border-radius: 18px;
+  background: rgba(17, 16, 16, 0.88);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 18px 55px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255,255,255,.035);
+}
+
+.switcher-btn {
+  min-height: 48px;
+  justify-content: center;
+  padding: 0.8rem 1.35rem;
+  border: 1px solid transparent;
+  border-radius: 13px;
+  white-space: nowrap;
+  font-size: 0.92rem;
+  color: #a5a1a0;
+  transition:
+    color .28s ease,
+    background .35s cubic-bezier(.2,.8,.2,1),
+    border-color .28s ease,
+    box-shadow .35s ease,
+    transform .28s ease;
+}
+
+.switcher-btn:hover {
+  color: #fff1e9;
+  transform: translateY(-1px);
+}
+
+.switcher-btn.active {
+  color: #fff;
+  background: linear-gradient(115deg, #ff612d 0%, #ff824f 100%);
+  border-color: rgba(255, 183, 147, .25);
+  box-shadow: 0 8px 22px rgba(255, 91, 39, .2), inset 0 1px 0 rgba(255,255,255,.18);
+}
+
+.switcher-btn:focus-visible,
+.tick-label:focus-visible {
+  outline: 2px solid #ffb08c;
+  outline-offset: 3px;
+}
+
+.tag-count {
+  margin-left: .15rem;
+  padding: .2rem .5rem;
+  background: rgba(18, 12, 10, .22);
+  border: 1px solid rgba(255,255,255,.14);
+  color: inherit;
+}
+
+/* Prevent the dynamic panel from jumping when its content changes. */
+.pricing-content-box {
+  position: relative;
+  min-height: 360px;
+  isolation: isolate;
+}
+
+.pricing-content-box > * {
+  transform-origin: 50% 0%;
+  backface-visibility: hidden;
+}
+
+.validity-plans-grid {
+  gap: 1.15rem;
+  align-items: stretch;
+}
+
+.validity-card {
+  min-width: 0;
+  min-height: 345px;
+  padding: 2rem 1.35rem 1.4rem;
+  border-radius: 22px;
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(255, 111, 59, .055), transparent 52%),
+    linear-gradient(155deg, rgba(24, 23, 23, .98), rgba(12, 12, 12, .97));
+  border-color: rgba(255,255,255,.095);
+  box-shadow: 0 18px 45px rgba(0,0,0,.25), inset 0 1px 0 rgba(255,255,255,.025);
+  transition:
+    transform .38s cubic-bezier(.2,.8,.2,1),
+    border-color .32s ease,
+    background .32s ease,
+    box-shadow .38s ease;
+}
+
+.validity-card:hover {
+  transform: translateY(-7px);
+  border-color: rgba(255, 120, 68, .5);
+  box-shadow: 0 26px 60px rgba(0,0,0,.38), 0 0 30px rgba(255,100,48,.075);
+}
+
+.validity-card.popular-card {
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(255, 105, 49, .16), transparent 58%),
+    linear-gradient(155deg, rgba(35, 24, 20, .98), rgba(15, 13, 12, .98));
+  box-shadow: 0 20px 52px rgba(0,0,0,.32), inset 0 0 0 1px rgba(255,125,77,.035);
+}
+
+.most-popular-badge {
+  top: 0;
+  padding: .42rem .95rem;
+  letter-spacing: .08em;
+  border-radius: 0 0 13px 13px;
+}
+
+.card-top-info {
+  min-height: 40px;
+  align-items: flex-start;
+}
+
+.plan-credits {
+  line-height: 1.45;
+  margin: 0;
+}
+
+.plan-pricing-row {
+  margin-top: .45rem;
+  margin-bottom: 1.25rem;
+  gap: .2rem;
+}
+
+.plan-pricing-row .amount {
+  letter-spacing: -.055em;
+  font-size: clamp(2.1rem, 2.4vw, 2.65rem);
+  line-height: 1;
+}
+
+.plan-details-text {
+  min-height: 88px;
+  line-height: 1.55;
+}
+
+.plan-action-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .45rem;
+  text-decoration: none;
+  min-height: 52px;
+  padding: .85rem 1rem;
+  margin-top: auto;
+  border-radius: 12px;
+  font-size: .92rem;
+  transition: transform .28s cubic-bezier(.2,.8,.2,1), box-shadow .28s ease, background .28s ease;
+}
+
+.secondary-btn {
+  background: rgba(255,255,255,.045);
+  border: 1px solid rgba(255,255,255,.11);
+}
+
+.secondary-btn:hover {
+  background: rgba(255,255,255,.075);
+  border-color: rgba(255,125,77,.38);
+}
+
+.primary-btn {
+  background: linear-gradient(115deg, #ff612d 0%, #ff824f 100%);
+  box-shadow: 0 10px 25px rgba(255,91,39,.18), inset 0 1px 0 rgba(255,255,255,.15);
+}
+
+.primary-btn:hover {
+  box-shadow: 0 14px 30px rgba(255,91,39,.27);
+}
+
+/* PAYG: treat the slider as the primary interactive control, not a plain form range. */
+.payg-layout-grid {
+  overflow: hidden;
+  gap: 0;
+  padding: 0;
+  border-radius: 26px;
+  background: rgba(19, 18, 18, .96);
+  border: 1px solid rgba(255,255,255,.1);
+  box-shadow: 0 30px 90px rgba(0,0,0,.32), inset 0 1px 0 rgba(255,255,255,.025);
+}
+
+@media (min-width: 992px) {
+  .payg-layout-grid {
+    grid-template-columns: minmax(0, 1.18fr) minmax(330px, .82fr);
+    gap: 0;
+  }
+}
+
+.payg-calculator-pane {
+  padding: clamp(1.5rem, 3.5vw, 3rem);
+  min-width: 0;
+}
+
+.payg-perks-pane {
+  padding: clamp(1.5rem, 3vw, 2.7rem);
+  border-left: 1px solid rgba(255,255,255,.085);
+  background: linear-gradient(150deg, rgba(255,255,255,.018), rgba(0,0,0,.08));
+}
+
+.payg-top-label-row {
+  margin-bottom: 2.2rem;
+}
+
+.payg-sub-heading,
+.comp-header-title,
+.perks-header-title {
+  letter-spacing: .14em;
+  font-size: .72rem;
+}
+
+.payg-volume-title {
+  font-size: clamp(1.35rem, 2.1vw, 1.75rem);
+  letter-spacing: -.035em;
+}
+
+.expiry-pill {
+  background: rgba(255, 107, 53, .07);
+  border-color: rgba(255, 107, 53, .34);
+  box-shadow: none;
+}
+
+.payg-price-display {
+  align-items: flex-start;
+  gap: .12rem;
+  margin-bottom: .15rem;
+}
+
+.payg-currency {
+  font-size: clamp(2rem, 3vw, 2.7rem);
+  line-height: 1.12;
+  color: #a7a29f;
+}
+
+.payg-big-number {
+  font-size: clamp(4rem, 7vw, 5.8rem);
+  letter-spacing: -.075em;
+  line-height: .98;
+  font-variant-numeric: tabular-nums;
+}
+
+.payg-rate-breakdown {
+  min-height: 1.5rem;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  font-size: .85rem;
+  margin: -0.25rem 0 2.3rem;
+}
+
+.slider-control-group {
+  margin: .5rem 0 2rem;
+}
+
+.pricing-range-input {
+  --range-progress: 0%;
+  display: block;
+  height: 7px;
+  margin: 0 0 1.1rem;
+  border-radius: 99px;
+  background: linear-gradient(
+    90deg,
+    #ff6b35 0%,
+    #ff824f var(--range-progress),
+    rgba(255,255,255,.105) var(--range-progress),
+    rgba(255,255,255,.105) 100%
+  );
+  appearance: none;
+  -webkit-appearance: none;
+  touch-action: pan-y;
+}
+
+.pricing-range-input::-webkit-slider-thumb {
+  width: 22px;
+  height: 22px;
+  border: 5px solid #ff6b35;
+  background: #fff7f2;
+  box-shadow: 0 0 0 5px rgba(255,107,53,.11), 0 4px 15px rgba(0,0,0,.35);
+  transition: box-shadow .25s ease, transform .25s cubic-bezier(.2,.8,.2,1);
+}
+
+.pricing-range-input::-webkit-slider-thumb:hover,
+.pricing-range-input:focus-visible::-webkit-slider-thumb {
+  transform: scale(1.12);
+  box-shadow: 0 0 0 8px rgba(255,107,53,.13), 0 4px 18px rgba(0,0,0,.4);
+}
+
+.pricing-range-input::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border: 5px solid #ff6b35;
+  border-radius: 50%;
+  background: #fff7f2;
+  box-shadow: 0 0 0 5px rgba(255,107,53,.11);
+}
+
+.slider-ticks-row {
+  display: grid;
+  grid-template-columns: repeat(9, minmax(0, 1fr));
+  align-items: center;
+  gap: .15rem;
+}
+
+.tick-label {
+  min-width: 0;
+  padding: .42rem .12rem;
+  border-radius: 8px;
+  font-size: clamp(.66rem, .9vw, .8rem);
+  font-variant-numeric: tabular-nums;
+  transition: color .25s ease, background .25s ease, transform .25s ease;
+}
+
+.tick-label:hover {
+  transform: translateY(-1px);
+}
+
+.tick-label:hover,
+.tick-label.active-tick {
+  color: #fff1e9;
+  background: rgba(255,107,53,.1);
+}
+
+.tick-label.active-tick {
+  font-weight: 800;
+  text-shadow: 0 0 18px rgba(255,107,53,.18);
+}
+
+.payg-cta-row {
+  gap: 1rem;
+}
+
+.payg-signup-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .6rem;
+  min-height: 54px;
+  background: linear-gradient(115deg, #ff612d 0%, #ff824f 100%);
+  color: #1b100b;
+  border: 1px solid rgba(255,182,145,.28);
+  box-shadow: 0 10px 26px rgba(255,91,39,.17), inset 0 1px 0 rgba(255,255,255,.22);
+}
+
+.payg-card-note {
+  line-height: 1.5;
+}
+
+.payg-perks-pane {
+  justify-content: flex-start;
+}
+
+.comparison-card-box,
+.perks-checklist-box {
+  background: rgba(255,255,255,.018);
+  border-color: rgba(255,255,255,.09);
+  border-radius: 17px;
+  padding: clamp(1.15rem, 2vw, 1.6rem);
+}
+
+.comp-row {
+  gap: 1rem;
+}
+
+.comp-savings-banner {
+  overflow-wrap: anywhere;
+}
+
+.benchmark-note {
+  color: #a7a29f !important;
+  font-size: .84rem;
+  line-height: 1.6;
+}
+
+.perks-list {
+  gap: .95rem;
+  line-height: 1.5;
+}
+
+.perks-list li {
+  align-items: flex-start;
+}
+
+.perks-list span {
+  flex: 0 0 auto;
+  color: #ff824f;
+}
+
+/* Don't rotate the large calculator panel on pointer movement; it should feel stable. */
+.payg-layout-grid {
+  transform: none !important;
+}
+
+@media (max-width: 991px) {
+  .payg-perks-pane {
+    border-left: 0;
+    border-top: 1px solid rgba(255,255,255,.085);
+  }
+  .payg-rate-breakdown {
+    text-align: left;
+    margin-top: .6rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .pricing-switcher-wrapper {
+    margin-bottom: 1.5rem;
+  }
+  .pricing-switcher-container {
+    display: flex;
+    width: min(100%, 390px);
+  }
+  .switcher-btn {
+    flex: 1;
+    padding: .72rem .65rem;
+    font-size: .82rem;
+  }
+  .pricing-content-box {
+    min-height: 0;
+  }
+  .validity-plans-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  .validity-card {
+    min-height: 0;
+    padding: 1.5rem;
+  }
+  .plan-details-text {
+    min-height: 0;
+  }
+  .payg-layout-grid {
+    border-radius: 20px;
+  }
+  .payg-calculator-pane,
+  .payg-perks-pane {
+    padding: 1.25rem;
+  }
+  .payg-top-label-row {
+    align-items: flex-start;
+  }
+  .expiry-pill {
+    font-size: .68rem;
+    padding: .35rem .65rem;
+  }
+  .payg-big-number {
+    font-size: 4.25rem;
+  }
+  .payg-rate-breakdown {
+    font-size: .78rem;
+  }
+  .slider-ticks-row {
+    gap: 0;
+  }
+  .tick-label {
+    font-size: .65rem;
+    padding-inline: 0;
+  }
+  .payg-signup-btn {
+    width: 100%;
+  }
+  .payg-card-note {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pricing-section-wrapper *,
+  .pricing-section-wrapper *::before,
+  .pricing-section-wrapper *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+
+/* ==========================================================
+   EmailAnswers floating analytics preview + premium shadows
+   ========================================================== */
+.pricing-section-wrapper {
+  --ea-shadow-soft: 0 18px 45px rgba(0, 0, 0, .28);
+  --ea-shadow-deep: 0 28px 70px rgba(0, 0, 0, .42);
+  --ea-shadow-orange: 0 18px 42px rgba(255, 107, 53, .16);
+}
+
+/* Float a realistic verification dashboard behind the neural visual. */
+.hero-banner-visuals {
+  max-width: 470px;
+  min-height: 350px;
+  isolation: isolate;
+}
+
+.email-health-dashboard {
+  position: absolute;
+  width: min(390px, 91%);
+  right: 0;
+  top: 50%;
+  transform: translateY(-52%) rotate(-2deg);
+  overflow: hidden;
+  border: 1px solid rgba(255, 157, 112, .25);
+  border-radius: 22px;
+  color: #f7f4f2;
+  background:
+    radial-gradient(ellipse at 90% 0%, rgba(255, 107, 53, .13), transparent 46%),
+    linear-gradient(145deg, rgba(28, 25, 24, .97), rgba(12, 13, 14, .97));
+  box-shadow: var(--ea-shadow-deep), 0 0 0 1px rgba(255,255,255,.025), 0 0 55px rgba(255, 107, 53, .11);
+  backdrop-filter: blur(22px);
+  z-index: 0;
+  animation: dashboardFloat 7.5s ease-in-out infinite;
+}
+
+.email-dashboard-topbar {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  min-height: 42px;
+  padding: 0 15px;
+  color: #aaa4a0;
+  background: rgba(255,255,255,.035);
+  border-bottom: 1px solid rgba(255,255,255,.075);
+  font: 700 .62rem/1.2 ui-monospace, SFMono-Regular, Menlo, monospace;
+  letter-spacing: .12em;
+}
+
+.dashboard-live-dot {
+  width: 7px;
+  height: 7px;
+  flex: 0 0 7px;
+  border-radius: 50%;
+  background: #ff713b;
+  box-shadow: 0 0 12px rgba(255,113,59,.9);
+}
+
+.dashboard-window-dots {
+  display: flex;
+  gap: 4px;
+  margin-left: auto;
+}
+.dashboard-window-dots i {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.25);
+}
+
+.dashboard-score-row {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  padding: 19px 17px 16px;
+}
+
+.dashboard-score-ring {
+  display: grid;
+  place-items: center;
+  width: 58px;
+  height: 58px;
+  flex: 0 0 58px;
+  border-radius: 50%;
+  background: conic-gradient(#ff7541 0deg 270deg, rgba(255,255,255,.1) 270deg 360deg);
+  box-shadow: 0 0 25px rgba(255,107,53,.12);
+  position: relative;
+}
+.dashboard-score-ring::before {
+  content: "";
+  position: absolute;
+  inset: 5px;
+  border-radius: 50%;
+  background: #171514;
+  border: 1px solid rgba(255,255,255,.06);
+}
+.dashboard-score-ring span {
+  position: relative;
+  z-index: 1;
+  font-size: .9rem;
+  font-weight: 800;
+  letter-spacing: -.04em;
+}
+.dashboard-score-ring small { font-size: .52rem; color: #ff9369; }
+.dashboard-score-copy { display: grid; gap: 5px; min-width: 0; }
+.dashboard-score-copy strong { font-size: .82rem; }
+.dashboard-score-copy > span { color: #a8a19d; font-size: .69rem; }
+.dashboard-status-pill {
+  margin-left: auto;
+  align-self: flex-start;
+  padding: 5px 8px;
+  border: 1px solid rgba(52,211,153,.18);
+  border-radius: 999px;
+  color: #55dfae;
+  background: rgba(52,211,153,.08);
+  font-size: .61rem;
+  font-weight: 700;
+}
+
+.dashboard-mini-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  padding: 0 14px 14px;
+}
+.dashboard-stat {
+  padding: 12px 11px 10px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,.07);
+  background: rgba(255,255,255,.027);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.025);
+}
+.dashboard-stat > span { display: block; color: #a8a19d; font-size: .64rem; margin-bottom: 7px; }
+.dashboard-stat > strong { display: block; font-size: 1.12rem; letter-spacing: -.04em; }
+.stat-meter { height: 4px; margin-top: 10px; overflow: hidden; border-radius: 99px; background: rgba(255,255,255,.09); }
+.stat-meter i { display: block; height: 100%; border-radius: inherit; background: linear-gradient(90deg, #ff642f, #ff9a69); box-shadow: 0 0 12px rgba(255,107,53,.45); }
+.stat-meter-green i { background: linear-gradient(90deg, #10b981, #6ee7b7); box-shadow: 0 0 12px rgba(16,185,129,.3); }
+
+.dashboard-bottom-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 15px 14px;
+  border-top: 1px solid rgba(255,255,255,.065);
+  background: rgba(255,255,255,.018);
+}
+.dashboard-check-icon, .credit-badge-check {
+  display: grid;
+  place-items: center;
+  width: 27px;
+  height: 27px;
+  flex: 0 0 27px;
+  border-radius: 50%;
+  color: #16100d;
+  font-size: .85rem;
+  font-weight: 900;
+  background: linear-gradient(135deg, #ffb083, #ff6b35);
+  box-shadow: 0 5px 15px rgba(255,107,53,.24);
+}
+.dashboard-bottom-row > span:nth-child(2) { display: grid; gap: 3px; }
+.dashboard-bottom-row strong { font-size: .7rem; }
+.dashboard-bottom-row small { color: #9d9692; font-size: .62rem; }
+.dashboard-live-label { margin-left: auto; color: #ff9369; font: 700 .58rem ui-monospace, monospace; letter-spacing: .1em; }
+
+/* The neural ring is now a foreground accent; dashboard remains behind it. */
+.cyber-3d-node-card {
+  z-index: 2;
+  width: 190px;
+  height: 190px;
+  margin-left: -34px;
+  margin-top: 32px;
+  border-color: rgba(255, 124, 76, .48);
+  box-shadow: 0 25px 65px rgba(0,0,0,.48), 0 0 48px rgba(255,107,53,.18), inset 0 0 30px rgba(255,107,53,.12);
+}
+.cyber-3d-node-card .node-svg-graphic { width: 132px; height: 132px; }
+.floating-preview-badge {
+  left: -4px;
+  bottom: 25px;
+  max-width: 290px;
+  box-shadow: 0 22px 55px rgba(0,0,0,.48), 0 8px 28px rgba(255,107,53,.09);
+}
+
+.floating-credit-badge {
+  position: absolute;
+  right: -3px;
+  bottom: 2px;
+  z-index: 6;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 15px;
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 15px;
+  background: rgba(24, 22, 21, .94);
+  box-shadow: 0 18px 45px rgba(0,0,0,.42), 0 0 28px rgba(255,107,53,.09);
+  backdrop-filter: blur(18px);
+  animation: creditBadgeFloat 6s ease-in-out infinite;
+  animation-delay: -2s;
+}
+.floating-credit-badge > span:last-child { display: grid; gap: 4px; }
+.floating-credit-badge strong { color: #f7f2ef; font-size: .73rem; white-space: nowrap; }
+.floating-credit-badge small { color: #a7a09b; font-size: .65rem; }
+.credit-badge-check { width: 25px; height: 25px; flex-basis: 25px; background: linear-gradient(135deg, #34d399, #10b981); box-shadow: 0 5px 15px rgba(16,185,129,.24); }
+
+@keyframes dashboardFloat {
+  0%, 100% { translate: 0 0; }
+  50% { translate: 0 -9px; }
+}
+@keyframes creditBadgeFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-7px); }
+}
+
+/* Layered shadows across the whole pricing experience, kept soft rather than glossy. */
+.pricing-section-wrapper .pricing-hero-banner {
+  box-shadow: 0 35px 90px rgba(0,0,0,.48), 0 12px 40px rgba(255,107,53,.08), inset 0 1px 0 rgba(255,255,255,.035);
+}
+.pricing-section-wrapper .pricing-switcher-container {
+  box-shadow: 0 18px 48px rgba(0,0,0,.36), 0 0 0 1px rgba(255,255,255,.025), inset 0 1px 0 rgba(255,255,255,.035);
+}
+.pricing-section-wrapper .validity-card {
+  box-shadow: 0 18px 45px rgba(0,0,0,.36), 0 5px 18px rgba(0,0,0,.16), inset 0 1px 0 rgba(255,255,255,.025);
+}
+.pricing-section-wrapper .validity-card:hover {
+  box-shadow: 0 28px 65px rgba(0,0,0,.48), 0 10px 28px rgba(255,107,53,.09), inset 0 1px 0 rgba(255,255,255,.04);
+}
+.pricing-section-wrapper .power-core-card {
+  box-shadow: 0 24px 65px rgba(0,0,0,.42), 0 0 30px rgba(255,107,53,.1), inset 0 0 28px rgba(255,107,53,.055) !important;
+}
+.pricing-section-wrapper .payg-layout-grid {
+  box-shadow: 0 30px 85px rgba(0,0,0,.4), 0 10px 30px rgba(255,107,53,.055), inset 0 1px 0 rgba(255,255,255,.025);
+}
+.pricing-section-wrapper .comparison-table-wrapper {
+  box-shadow: 0 25px 65px rgba(0,0,0,.3), inset 0 1px 0 rgba(255,255,255,.025);
+}
+.pricing-section-wrapper .pricing-bento-card {
+  box-shadow: 0 18px 48px rgba(0,0,0,.3), inset 0 1px 0 rgba(255,255,255,.025);
+}
+.pricing-section-wrapper .pricing-bento-card:hover {
+  box-shadow: 0 28px 65px rgba(0,0,0,.42), 0 0 28px rgba(255,107,53,.075);
+}
+.pricing-section-wrapper .plan-action-btn,
+.pricing-section-wrapper .hero-banner-btn,
+.pricing-section-wrapper .payg-signup-btn {
+  box-shadow: 0 10px 25px rgba(0,0,0,.2), 0 7px 20px rgba(255,107,53,.11), inset 0 1px 0 rgba(255,255,255,.13);
+}
+.pricing-section-wrapper .comparison-card-box,
+.pricing-section-wrapper .perks-checklist-box {
+  box-shadow: 0 14px 38px rgba(0,0,0,.2), inset 0 1px 0 rgba(255,255,255,.025);
+}
+
+/* Remove the dashed rotating outline completely; preserve Power Core styling. */
+.core-reactor-ring { display: none !important; animation: none !important; }
+@media (max-width: 991px) {
+  .hero-banner-visuals { max-width: 420px; min-height: 325px; margin: 0 auto; }
+  .email-health-dashboard { right: 2%; width: min(370px, 94%); }
+  .cyber-3d-node-card { width: 160px; height: 160px; margin-left: -22px; }
+  .floating-preview-badge { left: -2px; bottom: 20px; }
+  .floating-credit-badge { right: 0; }
+}
+@media (max-width: 560px) {
+  .hero-banner-visuals { min-height: 300px; margin-top: .5rem; }
+  .email-health-dashboard { width: 94%; right: 0; border-radius: 17px; }
+  .email-dashboard-topbar { min-height: 36px; font-size: .53rem; }
+  .dashboard-score-row { padding: 13px 12px 11px; gap: 9px; }
+  .dashboard-score-ring { width: 47px; height: 47px; flex-basis: 47px; }
+  .dashboard-score-copy strong { font-size: .72rem; }
+  .dashboard-score-copy > span { font-size: .61rem; }
+  .dashboard-status-pill { font-size: .54rem; padding: 4px 6px; }
+  .dashboard-mini-stats { padding: 0 10px 10px; gap: 7px; }
+  .dashboard-stat { padding: 9px; }
+  .dashboard-stat > span { font-size: .57rem; }
+  .dashboard-stat > strong { font-size: .98rem; }
+  .dashboard-bottom-row { padding: 9px 11px 11px; }
+  .dashboard-bottom-row strong { font-size: .62rem; }
+  .dashboard-bottom-row small { font-size: .56rem; }
+  .cyber-3d-node-card { width: 120px; height: 120px; margin-left: -12px; margin-top: 26px; }
+  .cyber-3d-node-card .node-svg-graphic { width: 90px; height: 90px; }
+  .floating-preview-badge { bottom: 8px; left: -5px; padding: 8px 10px; gap: 7px; max-width: 230px; }
+  .floating-preview-badge strong { font-size: .68rem; }
+  .badge-sub { font-size: .58rem; }
+  .badge-icon { width: 27px; height: 27px; flex-basis: 27px; }
+  .floating-credit-badge { bottom: -5px; right: -2px; padding: 9px 10px; gap: 7px; }
+  .floating-credit-badge strong { font-size: .62rem; }
+  .floating-credit-badge small { font-size: .57rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .email-health-dashboard, .floating-credit-badge { animation: none !important; }
+}
+
+
+/* ==========================================================
+   HIGH-VISIBILITY AMBIENT CURLS
+   Keep the ribbons visible in the open gaps around pricing content.
+   ========================================================== */
+.pricing-section-wrapper {
+  background:
+    radial-gradient(ellipse 58% 48% at 2% 42%, rgba(0, 133, 180, .20), transparent 72%),
+    radial-gradient(ellipse 54% 38% at 98% 85%, rgba(255, 90, 31, .28), transparent 72%),
+    radial-gradient(ellipse 36% 30% at 3% 8%, rgba(255, 72, 20, .16), transparent 75%),
+    #050505;
+}
+
+.pricing-bg-atmosphere {
+  z-index: 0;
+  overflow: hidden;
+}
+
+.pricing-ember-waves {
+  left: -7%;
+  right: -7%;
+  top: 8%;
+  width: 114%;
+  height: clamp(760px, 82vw, 1320px);
+  opacity: .95;
+  overflow: visible;
+  filter:
+    drop-shadow(0 0 5px rgba(255, 92, 32, .25))
+    drop-shadow(0 0 20px rgba(255, 92, 32, .12));
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(0,0,0,.85) 7%,
+    #000 25%,
+    #000 78%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(0,0,0,.85) 7%,
+    #000 25%,
+    #000 78%,
+    transparent 100%
+  );
+}
+
+.pricing-ember-waves svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.ember-wave {
+  fill: none;
+  stroke-width: 1.35;
+  vector-effect: non-scaling-stroke;
+  opacity: .82;
+}
+
+.ember-wave-a { stroke: rgba(255, 91, 34, .66); stroke-width: 1.8; }
+.ember-wave-b { stroke: rgba(255, 119, 51, .48); }
+.ember-wave-c { stroke: rgba(255, 86, 30, .50); stroke-width: 1.55; }
+.ember-wave-d { stroke: rgba(255, 163, 92, .42); }
+.ember-wave-e { stroke: rgba(255, 97, 36, .58); stroke-width: 1.6; }
+.ember-wave-f { stroke: rgba(255, 131, 64, .42); }
+.ember-wave-g { stroke: rgba(255, 84, 29, .44); }
+.ember-wave-h { stroke: rgba(255, 151, 83, .36); }
+.ember-wave-i { stroke: rgba(255, 102, 43, .42); }
+.ember-wave-j { stroke: rgba(255, 128, 57, .32); }
+.ember-wave-k { stroke: rgba(255, 94, 35, .36); }
+.ember-wave-teal {
+  stroke: rgba(25, 164, 185, .35);
+  stroke-width: 1.6;
+  opacity: .72;
+}
+
+.pricing-radar-wave {
+  top: 35%;
+  border-color: rgba(255, 112, 54, .13);
+  box-shadow: 0 0 70px rgba(255, 91, 31, .025);
+}
+
+.pricing-glow-orb.orb-1 {
+  top: 3%;
+  right: -16%;
+  opacity: .17;
+}
+
+.pricing-glow-orb.orb-2 {
+  bottom: 2%;
+  left: 12%;
+  opacity: .25;
+}
+
+@media (max-width: 768px) {
+  .pricing-ember-waves {
+    top: 10%;
+    height: 820px;
+    opacity: .7;
+  }
+  .ember-wave-teal { opacity: .48; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pricing-ember-waves .ember-wave {
+    animation: none !important;
+  }
+}
+
+
+/* Final background balance: fewer, softer curls so the pricing UI stays in focus. */
+.pricing-ember-waves {
+  opacity: .48 !important;
+  filter: drop-shadow(0 0 7px rgba(255, 92, 32, .08)) !important;
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(0,0,0,.6) 12%,
+    #000 32%,
+    rgba(0,0,0,.72) 72%,
+    transparent 100%
+  ) !important;
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(0,0,0,.6) 12%,
+    #000 32%,
+    rgba(0,0,0,.72) 72%,
+    transparent 100%
+  ) !important;
+}
+.ember-wave {
+  opacity: .3 !important;
+  stroke-width: 1.05 !important;
+}
+.ember-wave-a,
+.ember-wave-e {
+  opacity: .48 !important;
+  stroke-width: 1.35 !important;
+}
+.ember-wave-b,
+.ember-wave-d,
+.ember-wave-f,
+.ember-wave-g,
+.ember-wave-h,
+.ember-wave-i,
+.ember-wave-j,
+.ember-wave-k {
+  opacity: .12 !important;
+}
+.ember-wave-teal {
+  opacity: .16 !important;
+  stroke-width: 1.15 !important;
+}
+.pricing-section-wrapper .pricing-bg-atmosphere {
+  pointer-events: none;
+}
+
+
+/* Benchmark savings typography: readable, balanced line spacing and no blocky highlight. */
+.pricing-section-wrapper .comp-savings-banner {
+  display: block;
+  margin-top: 1rem;
+  padding: .65rem 0 0;
+  background: transparent !important;
+  border: 0 !important;
+  border-top: 1px solid rgba(255, 112, 54, .16) !important;
+  border-radius: 0 !important;
+  color: #20c997 !important;
+  font-size: .88rem;
+  font-weight: 600;
+  line-height: 1.65 !important;
+  letter-spacing: -.01em;
+  overflow-wrap: normal;
+  word-break: normal;
+  text-wrap: pretty;
+}
+.pricing-section-wrapper .comparison-card-box {
+  min-width: 0;
+}
+.pricing-section-wrapper .comp-savings-banner,
+.pricing-section-wrapper .comparison-card-box p {
+  max-width: 100%;
+}
+@media (max-width: 560px) {
+  .pricing-section-wrapper .comp-savings-banner {
+    font-size: .82rem;
+    line-height: 1.6 !important;
+  }
+}
+
+
+/* Compact verification pipeline inside the existing pricing dashboard (no extra section). */
+.dashboard-pipeline {
+  margin-top: 0.85rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid rgba(255,255,255,0.07);
+}
+.pipeline-label {
+  display: block;
+  margin-bottom: 0.55rem;
+  color: #85858e;
+  font-size: 0.58rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+}
+.pipeline-track {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+.pipeline-step {
+  display: flex;
+  align-items: center;
+  gap: 0.38rem;
+  min-width: 0;
+  padding: 0.42rem 0.5rem;
+  border: 1px solid rgba(255,107,53,0.16);
+  border-radius: 8px;
+  background: rgba(255,255,255,0.025);
+  color: #d4d4d8;
+  font-size: 0.65rem;
+  flex: 1;
+  animation: pipelineBreathe 4.8s ease-in-out infinite;
+}
+.pipeline-step:nth-of-type(3) { animation-delay: .5s; }
+.pipeline-step:nth-of-type(5) { animation-delay: 1s; }
+.pipeline-step i {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  flex: 0 0 18px;
+  border-radius: 5px;
+  background: rgba(255,107,53,0.14);
+  color: #ff8a61;
+  font-size: 0.55rem;
+  font-style: normal;
+  font-weight: 800;
+}
+.pipeline-step b { font-weight: 650; }
+.pipeline-connector {
+  height: 1px;
+  width: 10px;
+  flex: 0 0 10px;
+  background: linear-gradient(90deg, rgba(255,107,53,.65), rgba(52,211,153,.8));
+  position: relative;
+}
+.pipeline-connector::after {
+  content: "";
+  position: absolute;
+  top: -2px;
+  right: 0;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #34d399;
+  box-shadow: 0 0 8px rgba(52,211,153,.7);
+}
+@keyframes pipelineBreathe {
+  0%, 100% { border-color: rgba(255,107,53,.14); transform: translateY(0); }
+  50% { border-color: rgba(52,211,153,.34); transform: translateY(-2px); }
+}
+@media (max-width: 480px) {
+  .pipeline-track { gap: 0.25rem; }
+  .pipeline-step { padding: 0.38rem 0.28rem; gap: 0.25rem; font-size: 0.58rem; }
+  .pipeline-step i { width: 16px; height: 16px; flex-basis: 16px; }
+  .pipeline-connector { width: 5px; flex-basis: 5px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pipeline-step { animation: none; }
+}
+
+/* Neural verification network integrated into the existing pricing banner artwork. */
+.neural-network-svg .neural-links {
+  stroke-dasharray: 5 7;
+  animation: neuralSignalFlow 8s linear infinite;
+}
+.neural-network-svg .neural-nodes circle {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: neuralNodePulse 3.6s ease-in-out infinite;
+}
+.neural-network-svg .neural-nodes circle:nth-child(3n) { animation-delay: .6s; }
+.neural-network-svg .neural-nodes circle:nth-child(3n + 1) { animation-delay: 1.2s; }
+@keyframes neuralSignalFlow {
+  to { stroke-dashoffset: -48; }
+}
+@keyframes neuralNodePulse {
+  0%, 100% { opacity: .72; transform: scale(.88); }
+  50% { opacity: 1; transform: scale(1.18); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .neural-network-svg .neural-links,
+  .neural-network-svg .neural-nodes circle { animation: none !important; }
 }
