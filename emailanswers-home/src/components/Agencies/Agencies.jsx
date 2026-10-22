@@ -27,18 +27,8 @@ const agencyStats = [
 ];
 
 const testimonialStats = [
-  {
-    label: "Usable leads per client list",
-    number: 2,
-    suffix: "×",
-    decimals: 0,
-  },
-  {
-    label: "Domains burned since switching",
-    number: 0,
-    suffix: "",
-    decimals: 0,
-  },
+  { label: "Usable leads per client list", number: 2, suffix: "×", decimals: 0 },
+  { label: "Domains burned since switching", number: 0, suffix: "", decimals: 0 },
 ];
 
 const integrations = [
@@ -56,8 +46,7 @@ const resources = [
   {
     word: "catch-all",
     meta: "Guides · 6 min read",
-    title:
-      "What is a catch-all email, and why your verifier can't handle it",
+    title: "What is a catch-all email, and why your verifier can't handle it",
   },
   {
     word: "bounce",
@@ -67,8 +56,7 @@ const resources = [
   {
     word: "agencies",
     meta: "Agencies · 7 min read",
-    title:
-      "How agencies deliver bigger lists without burning client domains",
+    title: "How agencies deliver bigger lists without burning client domains",
   },
 ];
 
@@ -113,7 +101,6 @@ function useInView(ref, threshold = 0.1) {
     );
 
     observer.observe(element);
-
     return () => observer.disconnect();
   }, [ref, threshold]);
 
@@ -141,11 +128,7 @@ function useCountUp(target, enabled, duration = 1600, decimals = 0) {
     const animate = (timestamp) => {
       if (startTime === undefined) startTime = timestamp;
 
-      const progress = Math.min(
-        (timestamp - startTime) / duration,
-        1
-      );
-
+      const progress = Math.min((timestamp - startTime) / duration, 1);
       const eased = 1 - Math.pow(1 - progress, 3);
 
       setCount(Number((target * eased).toFixed(decimals)));
@@ -170,12 +153,7 @@ function useCountUp(target, enabled, duration = 1600, decimals = 0) {
   return count;
 }
 
-function AnimatedStat({
-  stat,
-  visible,
-  className = "",
-  duration = 1600,
-}) {
+function AnimatedStat({ stat, visible, className = "", duration = 1600 }) {
   const count = useCountUp(
     stat.number,
     visible,
@@ -206,12 +184,7 @@ function IntegrationTick({ index, visible }) {
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
       >
-        <circle
-          className="integration-tick-ring"
-          cx="12"
-          cy="12"
-          r="10"
-        />
+        <circle className="integration-tick-ring" cx="12" cy="12" r="10" />
         <path
           className="agencies-integration-tick-path"
           d="m6.5 12.5 3.5 3.5 7.5-8"
@@ -235,8 +208,6 @@ function AgenciesTheme() {
         --agency-white: #ffffff;
       }
 
-      /* Animated orange heading */
-
       #agencies .agency-story-heading {
         width: 100%;
         max-width: 850px;
@@ -251,12 +222,7 @@ function AgenciesTheme() {
       }
 
       #agencies .agency-story-heading h3 span {
-        background: linear-gradient(
-          100deg,
-          #ff6b1a,
-          #ffc49f,
-          #ff6b1a
-        );
+        background: linear-gradient(100deg, #ff6b1a, #ffc49f, #ff6b1a);
         background-size: 200% auto;
         -webkit-background-clip: text;
         background-clip: text;
@@ -268,8 +234,6 @@ function AgenciesTheme() {
         color: rgba(255, 255, 255, 0.75);
         text-align: center;
       }
-
-      /* Balanced testimonial and campaign metrics */
 
       #agencies .agency-story-layout {
         width: 100%;
@@ -289,9 +253,7 @@ function AgenciesTheme() {
 
       #agencies .agency-quote-card {
         border-color: rgba(255, 107, 26, 0.3);
-        transition:
-          transform 300ms ease,
-          border-color 300ms ease,
+        transition: transform 300ms ease, border-color 300ms ease,
           box-shadow 300ms ease;
       }
 
@@ -311,20 +273,12 @@ function AgenciesTheme() {
         background: rgba(255, 107, 26, 0.3);
       }
 
-      /* RK avatar: orange instead of blue */
-
       #agencies .agency-avatar-wrap .agency-story-avatar {
-        background: linear-gradient(
-          135deg,
-          #ff782b,
-          #c84300
-        ) !important;
+        background: linear-gradient(135deg, #ff782b, #c84300) !important;
         color: #ffffff !important;
         border: 1px solid rgba(255, 177, 122, 0.7);
         box-shadow: 0 0 24px rgba(255, 107, 26, 0.25);
       }
-
-      /* Orange campaign metrics */
 
       #agencies .agency-metric-primary {
         border-color: rgba(255, 107, 26, 0.55);
@@ -333,8 +287,6 @@ function AgenciesTheme() {
       #agencies .agency-metric-number {
         color: #ff7a2f;
       }
-
-      /* Animated integration checkmarks */
 
       #agencies .agencies-integration-indicator {
         color: #ff782b;
@@ -358,9 +310,7 @@ function AgenciesTheme() {
       }
 
       #agencies .agencies-integration-card {
-        transition:
-          transform 300ms ease,
-          border-color 300ms ease,
+        transition: transform 300ms ease, border-color 300ms ease,
           box-shadow 300ms ease;
       }
 
@@ -369,8 +319,6 @@ function AgenciesTheme() {
         border-color: rgba(255, 107, 26, 0.7);
         box-shadow: 0 14px 35px rgba(255, 107, 26, 0.1);
       }
-
-      /* Integration note: Times New Roman, readable and centered */
 
       #agencies .agencies-integration-note {
         width: 100%;
@@ -507,8 +455,7 @@ function Agencies() {
                 className="agencies-case-link"
                 href="mailto:hello@emailanswers.ai?subject=Nexus%20Commerce%20case%20study"
               >
-                Ask about the case study{" "}
-                <span aria-hidden="true">↗</span>
+                Ask about the case study <span aria-hidden="true">↗</span>
               </a>
             </div>
 
@@ -583,9 +530,7 @@ function Agencies() {
                 From uncertain leads to <span>confident campaigns.</span>
               </h3>
 
-              <p>
-                Less guesswork. Better conversations. Healthier campaigns.
-              </p>
+              <p>Less guesswork. Better conversations. Healthier campaigns.</p>
             </div>
 
             <div className="agency-story-layout">
@@ -763,10 +708,7 @@ function Agencies() {
                   <div className="agencies-resource-body">
                     <small>{article.meta}</small>
                     <h4>{article.title}</h4>
-                    <span
-                      className="agencies-resource-arrow"
-                      aria-hidden="true"
-                    >
+                    <span className="agencies-resource-arrow" aria-hidden="true">
                       ↗
                     </span>
                   </div>
