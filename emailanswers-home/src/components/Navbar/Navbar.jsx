@@ -1,127 +1,149 @@
 import { useEffect, useState } from "react";
 import "./Navbar.css";
+import logo from "../../assets/emailanswers-logo.png";
 
 const navLinks = [
-  { label: "How it works", href: "#how-it-works" },
-  { label: "Product", href: "#products" },
-  { label: "For agencies", href: "#agencies" },
-  { label: "Pricing", href: "#pricing" },
-  { label: "FAQ", href: "#faq" },
+  { name: "How it works", href: "#how" },
+  { name: "Product", href: "#product" },
+  { name: "For agencies", href: "#agencies" },
+  { name: "Pricing", href: "#pricing" },
+  { name: "FAQ", href: "#faq" },
 ];
 
 function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
 
+  // Close the menu when Escape is pressed.
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
-    };
+    if (!menuOpen) return;
 
-    handleScroll();
-
-    window.addEventListener("scroll", handleScroll, {
-      passive: true,
-    });
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-
-  useEffect(() => {
-    document.body.classList.toggle("menu-open", menuOpen);
-
-    return () => {
-      document.body.classList.remove("menu-open");
-    };
-  }, [menuOpen]);
-
-  useEffect(() => {
-    const handleEscape = (event) => {
+    const handleKeyDown = (event) => {
       if (event.key === "Escape") {
         setMenuOpen(false);
       }
     };
 
-    window.addEventListener("keydown", handleEscape);
+    document.addEventListener("keydown", handleKeyDown);
 
     return () => {
-      window.removeEventListener("keydown", handleEscape);
+      document.removeEventListener("keydown", handleKeyDown);
     };
-  }, []);
+  }, [menuOpen]);
 
-  const closeMenu = () => {
-    setMenuOpen(false);
-  };
+  // Prevent background scrolling while the mobile menu is open.
+  useEffect(() => {
+    if (!menuOpen) return;
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [menuOpen]);
+
+  const closeMenu = () => setMenuOpen(false);
 
   return (
-    <header
-      className={`navbar ${scrolled ? "navbar-scrolled" : ""}`}
-    >
+    <header className="navbar" id="top">
       <nav className="navbar-inner" aria-label="Main navigation">
 
         {/* Brand */}
-        <a
-          href="#"
-          className="navbar-brand"
-          aria-label="EmailAnswers AI home"
-          onClick={closeMenu}
-        >
+        <a href="/" className="navbar-brand" aria-label="EmailAnswers AI home">
+          <img
+            src={logo}
+            alt=""
+            className="navbar-logo"
+            aria-hidden="true"
+          />
+
           <span className="brand-name">
-            EmailAnswers
-            <span className="brand-ai"> AI</span>
+            EmailAnswers<span className="brand-ai">AI</span>
           </span>
         </a>
 
-        {/* Mobile menu button */}
-        <button
-          type="button"
-          className={`navbar-toggle ${menuOpen ? "active" : ""}`}
-          aria-label={menuOpen ? "Close navigation" : "Open navigation"}
-          aria-expanded={menuOpen}
-          aria-controls="primary-navigation"
-          onClick={() => setMenuOpen((previous) => !previous)}
-        >
-          <span />
-          <span />
-          <span />
-        </button>
 
-        {/* Navigation */}
-        <div
-          id="primary-navigation"
-          className={`navbar-content ${menuOpen ? "menu-active" : ""}`}
-        >
+        {/* Desktop Navigation */}
+        <div className="navbar-content">
           <div className="navbar-links">
             {navLinks.map((link) => (
               <a
-                key={link.label}
+                key={link.name}
                 href={link.href}
                 className="navbar-link"
-                onClick={closeMenu}
               >
-                {link.label}
+                {link.name}
               </a>
             ))}
           </div>
 
           <div className="navbar-actions">
+            <a href="/login" className="navbar-login">
+              Login
+            </a>
+
+            <a href="/signup" className="navbar-cta">
+              Get 250 credits <span aria-hidden="true">↗</span>
+            </a>
+          </div>
+        </div>
+
+        {/* Mobile Menu Toggle */}
+        <button
+          type="button"
+          className={`navbar-menu-toggle ${
+            menuOpen ? "is-open" : ""
+          }`}
+          aria-label={menuOpen ? "Close navigation menu" : "Open navigation menu"}
+          aria-expanded={menuOpen}
+          aria-controls="mobile-navigation"
+          onClick={() => setMenuOpen((previous) => !previous)}
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        {/* Mobile Navigation */}
+        <div
+          id="mobile-navigation"
+          className={`navbar-mobile ${
+            menuOpen ? "is-open" : ""
+          }`}
+          inert={!menuOpen}
+        >
+          <div className="navbar-mobile-links">
+            {navLinks.map((link) => (
+              <a
+                key={link.name}
+                href={link.href}
+                className="navbar-mobile-link"
+                onClick={closeMenu}
+                tabIndex={menuOpen ? 0 : -1}
+              >
+                {link.name}
+                <span aria-hidden="true">↗</span>
+              </a>
+            ))}
+          </div>
+
+          <div className="navbar-mobile-actions">
             <a
               href="/login"
-              className="navbar-login"
+              className="navbar-mobile-login"
               onClick={closeMenu}
+              tabIndex={menuOpen ? 0 : -1}
             >
               Login
             </a>
 
             <a
-              href="/"
-              className="navbar-cta"
+              href="/signup"
+              className="navbar-mobile-cta"
               onClick={closeMenu}
+              tabIndex={menuOpen ? 0 : -1}
             >
-              Get 250 credits
-              <span aria-hidden="true"> ↗</span>
+              Get 250 credits <span aria-hidden="true">↗</span>
             </a>
           </div>
         </div>

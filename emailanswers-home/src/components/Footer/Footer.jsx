@@ -1,4 +1,5 @@
 import "./Footer.css";
+import logo from "../../assets/emailanswers-logo.png";
 
 function Footer() {
 const companyLinks = [
@@ -8,8 +9,8 @@ const companyLinks = [
 ];
 
 const productLinks = [
-{ name: "Features", href: "#products" },
-{ name: "How it works", href: "#how-it-works" },
+{ name: "Features", href: "#product" },
+{ name: "How it works", href: "#how" },
 { name: "Pricing", href: "#pricing" },
 ];
 
@@ -60,9 +61,16 @@ return ( <footer className="ea-footer" id="footer"> <div className="ea-footer-ca
 
       {/* Brand */}
       <div className="ea-footer-brand">
-        <a href="/" className="ea-footer-logo">
-          <span className="ea-footer-logo-mark">E</span>
-          <span>EmailAnswers<span className="ea-orange"> AI</span></span>
+        <a href="/" className="ea-footer-logo" aria-label="EmailAnswers AI home">
+          <img
+            src={logo}
+            alt=""
+            className="ea-footer-logo-image"
+            aria-hidden="true"
+          />
+          <span>
+            EmailAnswers<span className="ea-orange"> AI</span>
+          </span>
         </a>
 
         <p>
