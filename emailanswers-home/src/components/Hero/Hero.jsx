@@ -348,12 +348,7 @@ export default function Hero() {
           </ul>
           
 
-          {/* NEW: how-it-works strip */}
-          <ol className="ea-steps ea-rise" style={{ "--i": 6 }}>
-            <li><b>Upload your list</b>Drop in the leads you paid for</li>
-            <li><b>We check each address</b>Catch-alls get resolved</li>
-            <li><b>Get a clear verdict</b>Send or don't send</li>
-          </ol>
+          
         
         </div>
 
