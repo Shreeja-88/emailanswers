@@ -281,21 +281,6 @@
   .ea-hero__sub{font-size:19px;max-width:560px;margin-bottom:34px}
 }
 
-.ea-steps{
-  list-style:none;counter-reset:s;max-width:540px;
-  margin:36px 0 0;padding:22px 0 0;border-top:1px dashed var(--h-line);
-  display:grid;grid-template-columns:repeat(3,1fr);gap:20px;
-}
-.ea-steps li{counter-increment:s;font-size:13px;line-height:1.5;color:var(--h-muted)}
-.ea-steps li::before{
-  content:"0" counter(s);display:block;margin-bottom:8px;
-  font:700 12px ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.12em;color:var(--h-orange-2);
-}
-.ea-steps b{display:block;margin-bottom:3px;font-size:14px;color:var(--h-text)}
-
-@media (max-width:560px){
-  .ea-steps{grid-template-columns:1fr;gap:16px}
-}
 @media (min-width:1001px){
   .ea-hero__inner{align-items:start}
   .ea-hero__copy{padding-top:28px}
