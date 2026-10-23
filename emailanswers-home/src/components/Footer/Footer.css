@@ -206,16 +206,13 @@ letter-spacing: -0.5px;
 text-decoration: none;
 }
 
-.ea-footer-logo-mark {
-display: grid;
-place-items: center;
-width: 35px;
-height: 35px;
-border-radius: 11px;
-background: linear-gradient(135deg, #ff9b53, #ff5d23);
-color: #140904;
-font-size: 20px;
-font-weight: 800;
+/* Footer Logo Image */
+.ea-footer-logo-image {
+  width: 38px;
+  height: 38px;
+  object-fit: contain;
+  flex-shrink: 0;
+  display: block;
 }
 
 .ea-orange {
