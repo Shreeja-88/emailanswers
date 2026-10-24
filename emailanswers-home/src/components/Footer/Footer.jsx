@@ -108,9 +108,19 @@ return ( <footer className="ea-footer" id="footer"> <div className="ea-footer-ca
         All rights reserved.
       </p>
 
-      <a className="ea-footer-back-top" href="#top">
+      <button
+        type="button"
+        className="ea-footer-back-top"
+        onClick={() => {
+          window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+          });
+        }}
+      >
         Back to top <span aria-hidden="true">↑</span>
-      </a>
+      </button>
+
     </div>
 
   </div>
