@@ -78,11 +78,14 @@ function Navbar() {
           </div>
 
           <div className="navbar-actions">
-            <a href="/login" className="navbar-login">
+            <a
+              href="https://app.emailanswers.ai/login"
+              className="navbar-login"
+            >
               Login
             </a>
 
-            <a href="/signup" className="navbar-cta">
+            <a href="https://app.emailanswers.ai/signup" className="navbar-cta">
               Get 250 credits <span aria-hidden="true">↗</span>
             </a>
           </div>
@@ -129,7 +132,7 @@ function Navbar() {
 
           <div className="navbar-mobile-actions">
             <a
-              href="/login"
+              href="https://app.emailanswers.ai/login"
               className="navbar-mobile-login"
               onClick={closeMenu}
               tabIndex={menuOpen ? 0 : -1}
@@ -138,7 +141,7 @@ function Navbar() {
             </a>
 
             <a
-              href="/signup"
+              href="https://app.emailanswers.ai/signup"
               className="navbar-mobile-cta"
               onClick={closeMenu}
               tabIndex={menuOpen ? 0 : -1}
