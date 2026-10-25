@@ -2,6 +2,7 @@
 import { useState } from "react";
 import "./NeverBounce.css";
 import TeamFitTestimonial from "./sections/TeamFitTestimonial";
+import Comparison from "./sections/Comparison";
 
 const pageSections = [
   { id: "tldr", label: "The short answer" },
@@ -351,13 +352,7 @@ export default function NeverBounce() {
           description="Understand catch-all domains, unverifiable results, and the limitations of standard mailbox checks."
         />
 
-        <SectionPlaceholder
-          id="compare"
-          number="03"
-          eyebrow="SIDE BY SIDE"
-          title="Compare the features"
-          description="Review verification capabilities, integrations, pricing, and the workflows supported by each platform."
-        />
+        <Comparison />
 
         <TeamFitTestimonial />
 

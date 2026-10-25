@@ -1,0 +1,93 @@
+/* Person 3: feature comparison. Every class is prefixed nb-cmp so it can't clash with other sections. */
+.nb-section.nb-cmp-section{
+  --c-surface:#161616;--c-line:#2c2c2c;--c-text:#f5f5f4;--c-muted:#9b9b98;--c-dim:#6d6d6a;
+  --c-orange:#f26b1d;--c-orange-2:#ff9a4d;--c-green:#3ecf8e;--c-red:#ff5b5b;--c-amber:#f5b83d;
+  position:relative;isolation:isolate;display:block;width:100%;max-width:1100px;margin:0 auto;padding:88px 24px;
+  color:var(--c-text)}
+.nb-cmp-section *,.nb-cmp-section *::before,.nb-cmp-section *::after{box-sizing:border-box}
+
+.nb-cmp__glow{position:absolute;z-index:-1;right:-6%;top:22%;width:55%;aspect-ratio:1;border-radius:50%;pointer-events:none;
+  background:radial-gradient(circle,rgba(242,107,29,.16),transparent 65%);filter:blur(30px);
+  opacity:0;transition:opacity 1.4s ease .3s}
+.is-in .nb-cmp__glow{opacity:1}
+
+/* heading */
+.nb-cmp__eyebrow{display:inline-flex;align-items:center;gap:8px;padding:7px 14px;font-size:12px;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--c-text);border:1px solid var(--c-line);border-radius:999px;background:var(--c-surface)}
+.nb-cmp__eyebrow i{display:block;width:6px;height:6px;border-radius:50%;background:var(--c-orange)}
+.is-in .nb-cmp__eyebrow i{animation:nb-cmp-ping 2.4s ease-out 1s infinite}
+.nb-cmp__title{margin:20px 0 14px;max-width:760px;font-size:clamp(30px,4vw,48px);line-height:1.08;font-weight:600;letter-spacing:-.03em;color:var(--c-text)}
+.nb-cmp__accent{background:linear-gradient(100deg,#ff9a4d,#f26b1d 60%,#ff9a4d);background-size:200% 100%;
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.is-in .nb-cmp__accent{animation:nb-cmp-shimmer 6s ease-in-out 1s infinite}
+.nb-cmp__lead{margin:0 0 36px;max-width:620px;font-size:17px;line-height:1.6;color:var(--c-muted)}
+
+/* entrance: heading blocks, table, note rise in one after another */
+.nb-cmp__a{opacity:0;transform:translateY(40px)}
+.is-in .nb-cmp__a{animation:nb-cmp-up .9s cubic-bezier(.2,.7,.2,1) forwards;animation-delay:calc(var(--i,0) * 140ms + 60ms)}
+
+/* table */
+.nb-cmp__wrap{overflow:auto;border:1px solid var(--c-line);border-radius:20px;background:rgba(14,14,14,.7);
+  box-shadow:0 40px 80px -40px rgba(0,0,0,.8)}
+.nb-cmp__wrap:focus-visible{outline:2px solid var(--c-orange-2);outline-offset:3px}
+.nb-cmp__table{width:100%;min-width:600px;border-collapse:collapse}
+.nb-cmp__table th,.nb-cmp__table td{padding:16px 18px;text-align:left;vertical-align:top;font-size:15px;border-bottom:1px solid var(--c-line)}
+.nb-cmp__table thead th{background:#1a1a1a;font-size:14px;font-weight:600;color:var(--c-muted)}
+.nb-cmp__table thead th.nb-cmp__us{position:relative;color:var(--c-orange-2);
+  background:linear-gradient(180deg,rgba(242,107,29,.2),rgba(242,107,29,.05))}
+/* orange bar draws itself across the EmailAnswers column header */
+.nb-cmp__table thead th.nb-cmp__us::before{content:"";position:absolute;left:0;right:0;top:0;height:3px;background:var(--c-orange);
+  transform:scaleX(0);transform-origin:left}
+.is-in .nb-cmp__table thead th.nb-cmp__us::before{animation:nb-cmp-draw .9s cubic-bezier(.2,.7,.2,1) .7s forwards}
+.nb-cmp__table tbody th{width:30%;font-weight:500;color:var(--c-text)}
+.nb-cmp__table td{color:#bdbdba;width:35%}
+.nb-cmp__table td.nb-cmp__us{background:rgba(242,107,29,.06);color:var(--c-text)}
+.nb-cmp__table tbody tr:last-child th,.nb-cmp__table tbody tr:last-child td{border-bottom:0}
+
+/* rows slide in one by one */
+.nb-cmp__row{opacity:0;transform:translateX(-28px)}
+.is-in .nb-cmp__row{animation:nb-cmp-row .6s cubic-bezier(.2,.7,.2,1) forwards;animation-delay:calc(var(--r,0) * 70ms + 650ms)}
+.nb-cmp__row:hover th,.nb-cmp__row:hover td{background:rgba(255,255,255,.035)}
+.nb-cmp__row:hover td.nb-cmp__us{background:rgba(242,107,29,.13)}
+.nb-cmp__row th,.nb-cmp__row td{transition:background .35s,box-shadow .35s}
+
+/* spotlight: the highlighted row glows orange and its EmailAnswers cell lights up */
+.nb-cmp__row.is-hot th{box-shadow:inset 3px 0 0 var(--c-orange);background:rgba(242,107,29,.08)}
+.nb-cmp__row.is-hot td{background:rgba(242,107,29,.06)}
+.nb-cmp__row.is-hot td.nb-cmp__us{background:rgba(242,107,29,.2);box-shadow:inset 0 0 24px rgba(242,107,29,.18)}
+.nb-cmp__row.is-hot .nb-cmp__mark--y{animation:nb-cmp-beat .9s ease-in-out}
+@keyframes nb-cmp-beat{0%,100%{transform:scale(1)}40%{transform:scale(1.5)}}
+
+/* ✓ ✕ marks pop in right after their row */
+.nb-cmp__mark{display:inline-block;font-weight:600;transform:scale(0)}
+.is-in .nb-cmp__mark{animation:nb-cmp-pop .45s cubic-bezier(.3,1.7,.5,1) forwards;animation-delay:calc(var(--r,0) * 70ms + 900ms)}
+.nb-cmp__mark--y{color:var(--c-green)}
+.nb-cmp__mark--n{color:var(--c-red)}
+.nb-cmp__mark--p{color:var(--c-amber)}
+.nb-cmp__sr{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+
+.nb-cmp__note{display:flex;align-items:flex-start;gap:10px;margin:18px 0 0;padding:14px 16px;max-width:760px;
+  font-size:13px;line-height:1.55;color:var(--c-dim);border:1px dashed var(--c-line);border-radius:12px;
+  background:rgba(255,255,255,.015)}
+.nb-cmp__note b{color:var(--c-muted);font-weight:600}
+.nb-cmp__note-ico{flex:none;display:grid;place-items:center;width:18px;height:18px;margin-top:1px;
+  border-radius:50%;border:1px solid var(--c-line);font-size:11px;font-weight:700;color:var(--c-muted)}
+
+@keyframes nb-cmp-up{to{opacity:1;transform:none}}
+@keyframes nb-cmp-row{to{opacity:1;transform:none}}
+@keyframes nb-cmp-pop{from{transform:scale(0)}to{transform:scale(1)}}
+@keyframes nb-cmp-draw{to{transform:scaleX(1)}}
+@keyframes nb-cmp-shimmer{0%,100%{background-position:0 0}50%{background-position:100% 0}}
+@keyframes nb-cmp-ping{0%{box-shadow:0 0 0 0 rgba(242,107,29,.6)}80%,100%{box-shadow:0 0 0 9px rgba(242,107,29,0)}}
+
+@media (max-width:760px){
+  .nb-section.nb-cmp-section{padding:64px 20px}
+}
+/* no animation for people who prefer reduced motion: everything just shows */
+@media (prefers-reduced-motion:reduce){
+  .nb-cmp__a,.nb-cmp__row{opacity:1;transform:none;animation:none !important}
+  .nb-cmp__mark{transform:none;animation:none !important}
+  .nb-cmp__glow{opacity:1;transition:none}
+  .nb-cmp__table thead th.nb-cmp__us::before{transform:none;animation:none !important}
+  .nb-cmp__eyebrow i,.nb-cmp__accent{animation:none !important}
+}
