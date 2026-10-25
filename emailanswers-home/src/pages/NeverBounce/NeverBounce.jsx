@@ -2,6 +2,7 @@
 import { useState } from "react";
 import "./NeverBounce.css";
 import TeamFitTestimonial from "./sections/TeamFitTestimonial";
+import SwitchingCTA from "./sections/SwitchingCTA";
 
 const pageSections = [
   { id: "tldr", label: "The short answer" },
@@ -361,15 +362,9 @@ export default function NeverBounce() {
 
         <TeamFitTestimonial />
 
-        <SectionPlaceholder
-          id="switch"
-          number="05"
-          eyebrow="YOUR NEXT STEPS"
-          title="Explore your options"
-          description="Review how to assess your existing verification workflow and evaluate an alternative."
-        />
+        <SwitchingCTA />
 
-        <FinalCTA />
+        
 
         <SectionPlaceholder
           id="faq"
