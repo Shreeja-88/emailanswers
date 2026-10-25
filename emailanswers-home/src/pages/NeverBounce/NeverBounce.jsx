@@ -357,7 +357,6 @@ export default function NeverBounce() {
         <TLDR />
 
         <SectionPlaceholder
-        <SectionPlaceholder
           id="compare"
           number="03"
           eyebrow="SIDE BY SIDE"
