@@ -1,4 +1,4 @@
-﻿
+
 import { useEffect, useRef, useState } from "react";
 import HeroProblem from "./sections/HeroProblem";
 import Navbar from "../../components/Navbar/Navbar";
