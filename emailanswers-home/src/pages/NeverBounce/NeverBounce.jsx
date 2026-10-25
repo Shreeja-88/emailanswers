@@ -139,10 +139,7 @@ function TLDR() {
     const startTime = performance.now();
 
     const animate = (currentTime) => {
-      const progress = Math.min(
-        (currentTime - startTime) / duration,
-        1
-      );
+      const progress = Math.min((currentTime - startTime) / duration, 1);
 
       setCountedPoints(
         targets.map((target) => Math.floor(target * progress))
@@ -188,9 +185,7 @@ function TLDR() {
                 <span className="nb-toc-number">
                   {String(index + 1).padStart(2, "0")}
                 </span>
-
                 <span>{item.label}</span>
-
                 <span className="nb-toc-arrow" aria-hidden="true">
                   ↗
                 </span>
@@ -211,7 +206,6 @@ function TLDR() {
               <span className="nb-dot" />
               THE QUICK VERDICT
             </span>
-
             <span className="nb-reading-time">3 MIN READ</span>
           </div>
 
@@ -230,7 +224,6 @@ function TLDR() {
               <span className="nb-point-icon">
                 {String(countedPoints[0]).padStart(2, "0")}
               </span>
-
               <div>
                 <h3>NeverBounce handles standard verification</h3>
                 <p>
@@ -244,7 +237,6 @@ function TLDR() {
               <span className="nb-point-icon">
                 {String(countedPoints[1]).padStart(2, "0")}
               </span>
-
               <div>
                 <h3>Catch-all results need extra attention</h3>
                 <p>
@@ -258,7 +250,6 @@ function TLDR() {
               <span className="nb-point-icon">
                 {String(countedPoints[2]).padStart(2, "0")}
               </span>
-
               <div>
                 <h3>Choose based on your workflow</h3>
                 <p>
@@ -272,16 +263,12 @@ function TLDR() {
           <div className="nb-recommendations">
             <article className="nb-recommendation">
               <div className="nb-recommendation-icon">↗</div>
-
               <span className="nb-recommendation-label">OPTION 01</span>
-
               <h3>Stay with NeverBounce</h3>
-
               <p>
                 A reasonable choice if your current verification workflow
                 meets your needs and catch-all results are uncommon.
               </p>
-
               <a href="#compare">
                 Explore its features <span aria-hidden="true">→</span>
               </a>
@@ -289,16 +276,12 @@ function TLDR() {
 
             <article className="nb-recommendation nb-recommendation-featured">
               <div className="nb-recommendation-icon">✳</div>
-
               <span className="nb-recommendation-label">OPTION 02</span>
-
               <h3>Evaluate EmailAnswers AI</h3>
-
               <p>
                 Worth evaluating if catch-all results are a recurring
                 challenge in your B2B outreach workflow.
               </p>
-
               <a href="#switch">
                 Explore your options <span aria-hidden="true">→</span>
               </a>
@@ -315,13 +298,7 @@ function TLDR() {
   );
 }
 
-function SectionPlaceholder({
-  id,
-  number,
-  eyebrow,
-  title,
-  description,
-}) {
+function SectionPlaceholder({ id, number, eyebrow, title, description }) {
   return (
     <section className="nb-section nb-placeholder-section" id={id}>
       <div className="nb-placeholder-number">{number}</div>
