@@ -4,6 +4,8 @@ import HeroProblem from "./sections/HeroProblem";
 import Navbar from "../../components/Navbar/Navbar";
 import "./NeverBounce.css";
 import logo from "../../assets/emailanswers-logo.png";
+import TeamFitTestimonial from "./sections/TeamFitTestimonial";
+import Comparison from "./sections/Comparison";
 
 const pageSections = [
   { id: "tldr", label: "The short answer" },
@@ -355,6 +357,7 @@ export default function NeverBounce() {
         <TLDR />
 
         <SectionPlaceholder
+        <SectionPlaceholder
           id="compare"
           number="03"
           eyebrow="SIDE BY SIDE"
@@ -362,13 +365,9 @@ export default function NeverBounce() {
           description="Review verification capabilities, integrations, pricing, and the workflows supported by each platform."
         />
 
-        <SectionPlaceholder
-          id="fair"
-          number="04"
-          eyebrow="FIND YOUR FIT"
-          title="Which tool fits your team?"
-          description="Evaluate the trade-offs based on your audience, campaign type, and verification requirements."
-        />
+        <Comparison />
+
+        <TeamFitTestimonial />
 
         <SectionPlaceholder
           id="switch"
