@@ -5,6 +5,7 @@ import Navbar from "../../components/Navbar/Navbar";
 import "./NeverBounce.css";
 import logo from "../../assets/emailanswers-logo.png";
 import TeamFitTestimonial from "./sections/TeamFitTestimonial";
+import SwitchingCTA from "./sections/SwitchingCTA";
 import Comparison from "./sections/Comparison";
 
 const pageSections = [
@@ -368,15 +369,9 @@ export default function NeverBounce() {
 
         <TeamFitTestimonial />
 
-        <SectionPlaceholder
-          id="switch"
-          number="05"
-          eyebrow="YOUR NEXT STEPS"
-          title="Explore your options"
-          description="Review how to assess your existing verification workflow and evaluate an alternative."
-        />
+        <SwitchingCTA />
 
-        <FinalCTA />
+        
 
         <SectionPlaceholder
           id="faq"

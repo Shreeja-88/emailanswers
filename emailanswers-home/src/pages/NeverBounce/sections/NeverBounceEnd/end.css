@@ -1,0 +1,120 @@
+/* ===== NeverBounce page, Person 5: theme tokens + animations (all classes prefixed ne-) ===== */
+.ne-root {
+  --ne-bg: #121212; --ne-surface: #1a1a1a; --ne-surface2: #202020; --ne-line: #2c2c2c;
+  --ne-text: #f5f5f4; --ne-muted: #9b9b98; --ne-dim: #6d6d6a;
+  --ne-orange: #f26b1d; --ne-orange2: #ff9a4d; --ne-deep: #c9480e;
+  --ne-green: #3ecf8e; --ne-red: #ff5b5b; --ne-amber: #f5b83d;
+  font-family: 'Inter Tight', system-ui, sans-serif; color: var(--ne-text);
+}
+.ne-script { font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400; letter-spacing: 0; }
+.ne-mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+.ne-grad { background: linear-gradient(90deg, var(--ne-orange2), var(--ne-orange)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.ne-bg-grad { background: linear-gradient(180deg, var(--ne-orange2), var(--ne-orange)); }
+
+.ne-btn { display: inline-flex; align-items: center; gap: 8px; border-radius: 12px; padding: 14px 24px; font-size: 15px; font-weight: 600; color: #1a0d05;
+  background: linear-gradient(180deg, var(--ne-orange2), var(--ne-orange)); box-shadow: 0 10px 34px -8px rgba(242,107,29,.65), inset 0 1px 0 rgba(255,255,255,.35); transition: transform .2s, filter .2s; }
+.ne-btn:hover { transform: translateY(-2px); filter: brightness(1.07); }
+.ne-btn .ne-arrow { transition: transform .25s; }
+.ne-btn:hover .ne-arrow { transform: translateX(4px); }
+
+.ne-chip { display: inline-flex; align-items: center; gap: 6px; width: max-content; white-space: nowrap; font-size: 12px; font-weight: 600; padding: 4px 10px; border-radius: 999px; }
+.ne-chip-ok { background: rgba(62,207,142,.12); color: var(--ne-green); }
+.ne-chip-bad, .ne-chip-dont { background: rgba(255,91,91,.12); color: var(--ne-red); }
+.ne-chip-ca { background: rgba(245,184,61,.12); color: var(--ne-amber); }
+.ne-chip-unk { background: rgba(255,255,255,.07); color: var(--ne-muted); }
+.ne-chip-ans { background: rgba(242,107,29,.15); color: var(--ne-orange2); }
+
+@keyframes ne-rise { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+@keyframes ne-pop { 0% { opacity: 0; transform: scale(.7); } 60% { transform: scale(1.08); } 100% { opacity: 1; transform: none; } }
+@keyframes ne-travel { from { left: 0; opacity: 0; } 10%, 90% { opacity: 1; } to { left: calc(100% - 8px); opacity: 0; } }
+@keyframes ne-drift-a { 0%, 100% { transform: translate(0,0) scale(1); } 50% { transform: translate(50px,-30px) scale(1.12); } }
+@keyframes ne-drift-b { 0%, 100% { transform: translate(0,0) scale(1); } 50% { transform: translate(-60px,24px) scale(1.1); } }
+@keyframes ne-word { from { opacity: 0; transform: translateY(.55em); filter: blur(8px); } to { opacity: 1; transform: none; filter: blur(0); } }
+@keyframes ne-floatup { 0% { transform: translateY(30px); opacity: 0; } 12%, 88% { opacity: 1; } 100% { transform: translateY(-190px); opacity: 0; } }
+@keyframes ne-swap-a { 0%, 42% { opacity: 1; } 55%, 100% { opacity: 0; } }
+@keyframes ne-swap-b { 0%, 42% { opacity: 0; } 55%, 100% { opacity: 1; } }
+@keyframes ne-pulse { 50% { box-shadow: 0 0 0 8px rgba(242,107,29,0); } }
+
+.ne-rise { animation: ne-rise .5s cubic-bezier(.2,.7,.2,1) both; }
+.ne-pop { animation: ne-pop .4s cubic-bezier(.2,.9,.3,1.2) both; }
+.ne-reveal { opacity: 0; transform: translateY(28px); transition: opacity .8s cubic-bezier(.2,.7,.2,1), transform .8s cubic-bezier(.2,.7,.2,1); }
+.ne-reveal.in { opacity: 1; transform: none; }
+.ne-word { display: inline-block; opacity: 0; }
+.in > .ne-word { animation: ne-word .8s cubic-bezier(.2,.7,.2,1) forwards; animation-delay: calc(var(--i) * 70ms); }
+.ne-blob-a { animation: ne-drift-a 14s ease-in-out infinite; }
+.ne-blob-b { animation: ne-drift-b 17s ease-in-out infinite; }
+.ne-node-live { animation: ne-pulse 2s ease-out infinite; }
+
+.ne-wire { position: relative; flex: 1; min-width: 28px; height: 0; border-top: 2px dotted #484848; }
+.ne-packet { position: absolute; top: -5px; width: 8px; height: 8px; border-radius: 50%; animation: ne-travel 2.2s linear infinite; }
+
+.ne-spot { position: relative; }
+.ne-spot::before { content: ""; position: absolute; inset: 0; border-radius: inherit; padding: 1px; pointer-events: none; opacity: 0; transition: opacity .3s;
+  background: radial-gradient(240px circle at var(--mx, 50%) var(--my, 50%), rgba(255,154,77,.9), transparent 65%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude; }
+.ne-spot:hover::before { opacity: 1; }
+
+.ne-float { position: absolute; animation: ne-floatup 7s linear infinite; }
+.ne-float > .a { animation: ne-swap-a 7s linear infinite; }
+.ne-float > .b { position: absolute; inset: 0; animation: ne-swap-b 7s linear infinite; }
+
+.ne-range { -webkit-appearance: none; appearance: none; width: 100%; height: 6px; border-radius: 99px; background: #2c2c2c; outline: none; }
+.ne-range::-webkit-slider-thumb { -webkit-appearance: none; width: 22px; height: 22px; border-radius: 50%; border: 3px solid #1a0d05; background: var(--ne-orange2); box-shadow: 0 0 0 4px rgba(242,107,29,.3); cursor: grab; }
+.ne-range::-moz-range-thumb { width: 18px; height: 18px; border-radius: 50%; border: 3px solid #1a0d05; background: var(--ne-orange2); box-shadow: 0 0 0 4px rgba(242,107,29,.3); cursor: grab; }
+
+@media (prefers-reduced-motion: reduce) {
+  .ne-rise, .ne-pop, .ne-blob-a, .ne-blob-b, .ne-node-live, .ne-packet, .ne-float, .ne-float > .a, .ne-float > .b { animation: none !important; }
+  .ne-float { display: none; }
+  .ne-reveal { opacity: 1; transform: none; transition: none; }
+  .ne-word { opacity: 1; }
+  .in > .ne-word { animation: none; }
+}
+
+/* ===== polish pass: shimmer, beams, flips, dots ===== */
+@property --ne-a { syntax: '<angle>'; initial-value: 0deg; inherits: false; }
+@keyframes ne-spin { to { --ne-a: 360deg; } }
+@keyframes ne-shimmer { to { background-position: 200% center; } }
+@keyframes ne-sheen { 0%, 55% { transform: translateX(-130%); } 100% { transform: translateX(130%); } }
+@keyframes ne-ring { 0% { box-shadow: 0 10px 34px -8px rgba(242,107,29,.65), 0 0 0 0 rgba(242,107,29,.5); } 70%, 100% { box-shadow: 0 10px 34px -8px rgba(242,107,29,.65), 0 0 0 18px rgba(242,107,29,0); } }
+@keyframes ne-flipin { from { opacity: 0; transform: perspective(300px) rotateX(-90deg); } to { opacity: 1; transform: none; } }
+@keyframes ne-land { 0% { transform: scale(.4); opacity: .8; } 100% { transform: scale(2.2); opacity: 0; } }
+@keyframes ne-seq { 0%, 100% { border-color: var(--ne-line); } 8%, 22% { border-color: var(--ne-orange2); box-shadow: 0 0 22px -4px rgba(242,107,29,.55); } }
+@keyframes ne-dotin { from { opacity: 0; transform: scale(0); } to { opacity: 1; transform: none; } }
+@keyframes ne-flip-ok { 0%, 18% { background: var(--ne-amber); transform: scale(1); } 26% { transform: scale(1.4); } 34%, 84% { background: var(--ne-orange2); box-shadow: 0 0 10px rgba(255,154,77,.7); transform: scale(1); } 100% { background: var(--ne-amber); box-shadow: none; } }
+@keyframes ne-flip-bad { 0%, 18% { background: var(--ne-amber); transform: scale(1); } 26% { transform: scale(1.4); } 34%, 84% { background: var(--ne-red); box-shadow: 0 0 10px rgba(255,91,91,.6); transform: scale(1); } 100% { background: var(--ne-amber); box-shadow: none; } }
+
+.ne-in > .ne-word.ne-shimmer, .in > .ne-word.ne-shimmer {
+  background: linear-gradient(90deg, var(--ne-orange) 0%, #ffd9b3 22%, var(--ne-orange2) 45%, var(--ne-orange) 70%, var(--ne-orange) 100%);
+  background-size: 220% auto; -webkit-background-clip: text; background-clip: text; color: transparent;
+  animation: ne-word .8s cubic-bezier(.2,.7,.2,1) forwards, ne-shimmer 6s linear infinite; animation-delay: calc(var(--i) * 70ms), 0s;
+}
+
+.ne-btn { position: relative; overflow: hidden; animation: ne-ring 2.6s ease-out infinite; }
+.ne-btn::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(110deg, transparent 32%, rgba(255,255,255,.5) 50%, transparent 68%); animation: ne-sheen 4s ease-in-out infinite; }
+
+.ne-beam { position: relative; overflow: hidden; }
+.ne-beam > .beam { content: ""; position: absolute; inset: 0; border-radius: inherit; padding: 1px; pointer-events: none; opacity: 0; transition: opacity .35s;
+  background: conic-gradient(from var(--ne-a), transparent 0 62%, var(--ne-orange2) 82%, transparent 100%); animation: ne-spin 3s linear infinite;
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude; }
+.ne-beam:hover > .beam { opacity: 1; }
+.ne-beam > .sheen { position: absolute; inset: 0; pointer-events: none; transform: translateX(-130%); background: linear-gradient(110deg, transparent 38%, rgba(255,255,255,.06) 50%, transparent 62%); transition: transform .9s ease; }
+.ne-beam:hover > .sheen { transform: translateX(130%); }
+
+.ne-flipin { animation: ne-flipin .6s cubic-bezier(.2,.8,.2,1) both; transform-origin: center top; }
+.ne-landring { position: absolute; width: 44px; height: 44px; border-radius: 50%; border: 2px solid var(--ne-orange2); animation: ne-land 1.1s ease-out both; }
+.ne-seq { animation: ne-seq 6s ease-in-out infinite; animation-delay: var(--sd, 0s); }
+
+.ne-dot { aspect-ratio: 1; width: 100%; border-radius: 50%; background: #2b2b2b; animation: ne-dotin .45s backwards; animation-delay: calc(var(--i) * 9ms); }
+.ne-dot-std { background: #34393a; }
+.ne-dot-ok { background: var(--ne-amber); animation: ne-dotin .45s backwards, ne-flip-ok 8s ease-in-out infinite; animation-delay: calc(var(--i) * 9ms), calc(1.4s + var(--k) * 55ms); }
+.ne-dot-bad { background: var(--ne-amber); animation: ne-dotin .45s backwards, ne-flip-bad 8s ease-in-out infinite; animation-delay: calc(var(--i) * 9ms), calc(1.4s + var(--k) * 55ms); }
+
+@media (prefers-reduced-motion: reduce) {
+  .ne-btn, .ne-btn::after, .ne-beam > .beam, .ne-seq, .ne-dot, .ne-dot-ok, .ne-dot-bad, .ne-landring, .ne-flipin { animation: none !important; }
+  .ne-dot-ok { background: var(--ne-orange2); } .ne-dot-bad { background: var(--ne-red); }
+  .in > .ne-word.ne-shimmer { animation: none; }
+}
+
+@keyframes ne-scan { from { top: -15%; opacity: 0; } 15%, 85% { opacity: 1; } to { top: 100%; opacity: 0; } }
+
+.ne-dot-key { display: inline-block; width: 8px; height: 8px; border-radius: 50%; flex: none; }
