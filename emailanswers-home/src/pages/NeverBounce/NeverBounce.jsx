@@ -1,6 +1,9 @@
-
-import { useState } from "react";
+﻿
+import { useEffect, useRef, useState } from "react";
+import HeroProblem from "./sections/HeroProblem";
+import Navbar from "../../components/Navbar/Navbar";
 import "./NeverBounce.css";
+import logo from "../../assets/emailanswers-logo.png";
 
 const pageSections = [
   { id: "tldr", label: "The short answer" },
@@ -11,159 +14,155 @@ const pageSections = [
   { id: "faq", label: "FAQ" },
 ];
 
-function PageNavbar() {
-  return (
-    <nav className="nb-nav">
-      <a className="nb-logo" href="/">
-        <span className="nb-logo-mark">@</span>
-        <span>EmailAnswers <span className="nb-ai">AI</span></span>
-      </a>
-
-      <div className="nb-nav-links">
-        <a href="/#how">How it works</a>
-        <a href="/#product">Product</a>
-        <a href="/alternatives/neverbounce" aria-current="page">
-          Compare
-        </a>
-        <a href="/#pricing">Pricing</a>
-      </div>
-
-      <a className="nb-button nb-button-primary" href="/#pricing">
-        Try it free <span aria-hidden="true">↗</span>
-      </a>
-    </nav>
-  );
-}
-
 function PageFooter() {
   return (
     <footer className="nb-footer">
-      <div className="nb-footer-grid">
-        <div>
-          <a className="nb-logo nb-footer-logo" href="/">
-            <span className="nb-logo-mark">@</span>
-            <span>EmailAnswers AI</span>
+      <div className="nb-footer-hero">
+        <h2>
+          Know which emails
+          <br />
+          <span>are worth reaching.</span>
+        </h2>
+
+        <a className="nb-footer-cta-button" href="/signup">
+          Get 250 credits <span aria-hidden="true">↗</span>
+        </a>
+      </div>
+
+      {/* Continuous scrolling wordmark */}
+      <div className="nb-footer-watermark" aria-hidden="true">
+        <div className="nb-footer-marquee-track">
+          {[0, 1].map((group) => (
+            <div className="nb-footer-marquee-group" key={group}>
+              <span>VERIFY.</span>
+              <span>VALIDATE.</span>
+              <span>REACH.</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Stationary divider */}
+      <div className="nb-footer-divider" />
+
+      <div className="nb-footer-top">
+        <div className="nb-footer-brand">
+          <a
+            className="nb-footer-logo"
+            href="/"
+            aria-label="EmailAnswers AI home"
+          >
+            <img
+              src={logo}
+              alt="EmailAnswers AI"
+              className="nb-footer-logo-image"
+            />
           </a>
+
           <p>
-            Email verification that helps you make better decisions about
-            the leads you contact.
+            Smarter email verification.
+            <br />
+            Better answers for every address.
           </p>
         </div>
+      </div>
 
-        <div>
-          <h3>Explore</h3>
+      <div className="nb-footer-links">
+        <div className="nb-footer-column">
+          <h3>Company</h3>
+          <a href="/#about">About us</a>
+          <a href="/#contact">Contact</a>
+          <a href="/#faq">FAQ</a>
+        </div>
+
+        <div className="nb-footer-column">
+          <h3>Product</h3>
+          <a href="/#product">Features</a>
           <a href="/#how">How it works</a>
           <a href="/#pricing">Pricing</a>
-          <a href="/#faq">FAQs</a>
         </div>
 
-        <div>
-          <h3>Compare</h3>
-          <a href="/alternatives/neverbounce">NeverBounce alternative</a>
-          <a href="/alternatives/zerobounce">ZeroBounce alternative</a>
-          <a href="/alternatives/scrubby">Scrubby alternative</a>
-        </div>
-
-        <div>
-          <h3>Company</h3>
-          <a href="/blog">Blog</a>
-          <a href="/contact">Contact</a>
+        <div className="nb-footer-column">
+          <h3>Resources</h3>
+          <a href="/alternatives/neverbounce">NeverBounce</a>
         </div>
       </div>
 
       <div className="nb-footer-bottom">
-        <span>© {new Date().getFullYear()} EmailAnswers AI</span>
-        <a href="/">Back to EmailAnswers AI ↗</a>
+        <p>
+          © {new Date().getFullYear()} EmailAnswers AI. All rights reserved.
+        </p>
+
+        <a className="nb-footer-back-to-top" href="#top">
+          Back to top <span aria-hidden="true">↑</span>
+        </a>
       </div>
     </footer>
   );
 }
 
-function HeroPlaceholder() {
-  return (
-    <section className="nb-hero" aria-label="NeverBounce comparison introduction">
-      <div className="nb-hero-content">
-        <div className="nb-breadcrumb">
-          <a href="/">Home</a>
-          <span>/</span>
-          <a href="/alternatives">Alternatives</a>
-          <span>/</span>
-          <span>NeverBounce</span>
-        </div>
-
-        <span className="nb-eyebrow">
-          <span className="nb-dot" />
-          EMAIL VERIFICATION COMPARISON
-        </span>
-
-        <h1>
-          A NeverBounce alternative that{" "}
-          <span className="nb-script">answers catch-alls.</span>
-        </h1>
-
-        <p className="nb-hero-description">
-          Compare NeverBounce and EmailAnswers AI to understand how each
-          tool handles catch-all email addresses and B2B lead verification.
-        </p>
-
-        <div className="nb-hero-actions">
-          <a className="nb-button nb-button-dark" href="/#pricing">
-            Explore EmailAnswers AI <span aria-hidden="true">↗</span>
-          </a>
-          <a className="nb-button nb-button-outline" href="#compare">
-            View comparison ↓
-          </a>
-        </div>
-
-        <div className="nb-hero-points">
-          <span>✓ B2B-focused comparison</span>
-          <span>✓ Catch-all verification</span>
-          <span>✓ Feature breakdown</span>
-        </div>
-
-        <div className="nb-hero-preview">
-          <div className="nb-preview-column">
-            <span className="nb-preview-label">STANDARD VERIFIER</span>
-            <h3>NeverBounce</h3>
-            <div className="nb-preview-row">
-              <span>Contact A</span>
-              <span className="nb-status nb-status-warning">Accept-all</span>
-            </div>
-            <div className="nb-preview-row">
-              <span>Contact B</span>
-              <span className="nb-status nb-status-warning">Accept-all</span>
-            </div>
-          </div>
-
-          <div className="nb-preview-divider">VS</div>
-
-          <div className="nb-preview-column nb-preview-highlight">
-            <span className="nb-preview-label">CATCH-ALL ANALYSIS</span>
-            <h3>EmailAnswers AI</h3>
-            <div className="nb-preview-row">
-              <span>Contact A</span>
-              <span className="nb-status nb-status-orange">Analysis</span>
-            </div>
-            <div className="nb-preview-row">
-              <span>Contact B</span>
-              <span className="nb-status nb-status-orange">Analysis</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
 function TLDR() {
   const [activeSection, setActiveSection] = useState("tldr");
+  const [hasEntered, setHasEntered] = useState(false);
+  const [countedPoints, setCountedPoints] = useState([0, 0, 0]);
+  const sectionRef = useRef(null);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+
+    if (!section || hasEntered) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setHasEntered(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.2 }
+    );
+
+    observer.observe(section);
+
+    return () => observer.disconnect();
+  }, [hasEntered]);
+
+  useEffect(() => {
+    if (!hasEntered) return;
+
+    const targets = [1, 2, 3];
+    const duration = 700;
+    let animationFrame;
+
+    const startTime = performance.now();
+
+    const animate = (currentTime) => {
+      const progress = Math.min((currentTime - startTime) / duration, 1);
+
+      setCountedPoints(
+        targets.map((target) => Math.floor(target * progress))
+      );
+
+      if (progress < 1) {
+        animationFrame = requestAnimationFrame(animate);
+      }
+    };
+
+    animationFrame = requestAnimationFrame(animate);
+
+    return () => cancelAnimationFrame(animationFrame);
+  }, [hasEntered]);
 
   const handleNavigation = (id) => {
     setActiveSection(id);
   };
 
   return (
-    <section className="nb-section nb-tldr-section" id="tldr">
+    <section
+      className="nb-section nb-tldr-section"
+      id="tldr"
+      ref={sectionRef}
+    >
       <div className="nb-tldr-layout">
         <aside className="nb-toc">
           <span className="nb-toc-label">QUICK NAVIGATION</span>
@@ -175,7 +174,9 @@ function TLDR() {
                 key={item.id}
                 href={`#${item.id}`}
                 className={
-                  activeSection === item.id ? "nb-toc-link active" : "nb-toc-link"
+                  activeSection === item.id
+                    ? "nb-toc-link active"
+                    : "nb-toc-link"
                 }
                 onClick={() => handleNavigation(item.id)}
               >
@@ -183,7 +184,9 @@ function TLDR() {
                   {String(index + 1).padStart(2, "0")}
                 </span>
                 <span>{item.label}</span>
-                <span className="nb-toc-arrow" aria-hidden="true">↗</span>
+                <span className="nb-toc-arrow" aria-hidden="true">
+                  ↗
+                </span>
               </a>
             ))}
           </nav>
@@ -216,7 +219,9 @@ function TLDR() {
 
           <div className="nb-summary-points">
             <article className="nb-summary-point">
-              <span className="nb-point-icon">01</span>
+              <span className="nb-point-icon">
+                {String(countedPoints[0]).padStart(2, "0")}
+              </span>
               <div>
                 <h3>NeverBounce handles standard verification</h3>
                 <p>
@@ -227,7 +232,9 @@ function TLDR() {
             </article>
 
             <article className="nb-summary-point">
-              <span className="nb-point-icon">02</span>
+              <span className="nb-point-icon">
+                {String(countedPoints[1]).padStart(2, "0")}
+              </span>
               <div>
                 <h3>Catch-all results need extra attention</h3>
                 <p>
@@ -238,7 +245,9 @@ function TLDR() {
             </article>
 
             <article className="nb-summary-point">
-              <span className="nb-point-icon">03</span>
+              <span className="nb-point-icon">
+                {String(countedPoints[2]).padStart(2, "0")}
+              </span>
               <div>
                 <h3>Choose based on your workflow</h3>
                 <p>
@@ -291,13 +300,16 @@ function SectionPlaceholder({ id, number, eyebrow, title, description }) {
   return (
     <section className="nb-section nb-placeholder-section" id={id}>
       <div className="nb-placeholder-number">{number}</div>
+
       <div className="nb-placeholder-content">
         <span className="nb-eyebrow">
           <span className="nb-dot" />
           {eyebrow}
         </span>
+
         <h2>{title}</h2>
         <p>{description}</p>
+
         <span className="nb-coming-soon">
           Section component will be added here
         </span>
@@ -316,7 +328,8 @@ function FinalCTA() {
         </span>
 
         <h2>
-          Make every lead <span className="nb-script">count.</span>
+          Know which emails{" "}
+          <span className="nb-script">are worth reaching.</span>
         </h2>
 
         <p>
@@ -334,21 +347,12 @@ function FinalCTA() {
 
 export default function NeverBounce() {
   return (
-    <div className="nb-page">
-      <PageNavbar />
+    <div className="nb-page" id="top">
+      <Navbar variant="comparison" />
 
       <main className="nb-main">
-        <HeroPlaceholder />
-
+        <HeroProblem />
         <TLDR />
-
-        <SectionPlaceholder
-          id="problem"
-          number="02"
-          eyebrow="THE CHALLENGE"
-          title="Where standard verification falls short"
-          description="Understand catch-all domains, unverifiable results, and the limitations of standard mailbox checks."
-        />
 
         <SectionPlaceholder
           id="compare"
