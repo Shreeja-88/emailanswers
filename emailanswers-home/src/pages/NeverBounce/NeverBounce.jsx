@@ -1,6 +1,7 @@
 
 import { useState } from "react";
 import "./NeverBounce.css";
+import TeamFitTestimonial from "./sections/TeamFitTestimonial";
 
 const pageSections = [
   { id: "tldr", label: "The short answer" },
@@ -358,13 +359,7 @@ export default function NeverBounce() {
           description="Review verification capabilities, integrations, pricing, and the workflows supported by each platform."
         />
 
-        <SectionPlaceholder
-          id="fair"
-          number="04"
-          eyebrow="FIND YOUR FIT"
-          title="Which tool fits your team?"
-          description="Evaluate the trade-offs based on your audience, campaign type, and verification requirements."
-        />
+        <TeamFitTestimonial />
 
         <SectionPlaceholder
           id="switch"
