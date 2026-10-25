@@ -15,7 +15,10 @@ const productLinks = [
 ];
 
 const resourceLinks = [
-{ name: "NeverBounce Alternative", href: "#neverbounce-alternative" },
+  {
+    name: "NeverBounce",
+    href: "/alternatives/neverbounce",
+  },
 ];
 
 const linkGroups = [
