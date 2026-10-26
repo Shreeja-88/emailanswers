@@ -1,4 +1,5 @@
-﻿import { useEffect, useRef, useState } from "react";
+﻿
+import { useEffect, useRef, useState } from "react";
 
 function AnimatedStat({ target, prefix = "", suffix = "", label }) {
   const ref = useRef(null);
@@ -35,7 +36,6 @@ function AnimatedStat({ target, prefix = "", suffix = "", label }) {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          // Animate again whenever the card re-enters the viewport.
           if (hasAnimatedThisVisit) return;
 
           hasAnimatedThisVisit = true;
@@ -48,8 +48,6 @@ function AnimatedStat({ target, prefix = "", suffix = "", label }) {
           startTime = performance.now();
           frameId = requestAnimationFrame(animate);
         } else {
-          // Keep the completed number visible while away.
-          // Allow another animation on the next visit.
           hasAnimatedThisVisit = false;
         }
       },
@@ -172,21 +170,31 @@ function SignalLabHero() {
         </p>
 
         <div className="signal-hero__actions">
-          <a className="signal-hero__cta" href="#comparison">
+          <a
+            className="signal-hero__cta"
+            href="https://app.emailanswers.ai/signup"
+          >
             Verify 100 emails free <span>→</span>
           </a>
-          <a className="signal-hero__secondary" href="#comparison">
+
+          <a className="signal-hero__secondary" href="#compare">
             See the full comparison
           </a>
         </div>
 
         <div className="signal-hero__benefits">
-          <span><b>✓</b> No credit card</span>
-          <span><b>✓</b> Upload your NeverBounce export directly</span>
-          <span><b>✓</b> Results in minutes</span>
+          <span>
+            <b>✓</b> No credit card
+          </span>
+          <span>
+            <b>✓</b> Upload your NeverBounce export directly
+          </span>
+          <span>
+            <b>✓</b> Results in minutes
+          </span>
         </div>
 
-        <div className="nb-insight-card">
+        <div className="nb-insight-card" id="how">
           <div className="nb-insight-top">
             <span className="nb-insight-icon">✳</span>
             <div>
@@ -241,6 +249,7 @@ function SignalLabHero() {
 
       <div
         className="signal-stage"
+        id="product"
         role="group"
         aria-label="Illustrative comparison of NeverBounce and EmailAnswers AI"
       >
@@ -390,7 +399,9 @@ export default function HeroProblem() {
                 A domain may accept mail at the server level without
                 confirming that every individual recipient mailbox exists.
               </p>
-              <span className="nb-problem-card-arrow" aria-hidden="true">↗</span>
+              <span className="nb-problem-card-arrow" aria-hidden="true">
+                ↗
+              </span>
             </article>
 
             <article className="nb-problem-card">
@@ -402,7 +413,9 @@ export default function HeroProblem() {
                 teams unsure how to handle an address in their outreach
                 workflow.
               </p>
-              <span className="nb-problem-card-arrow" aria-hidden="true">↗</span>
+              <span className="nb-problem-card-arrow" aria-hidden="true">
+                ↗
+              </span>
             </article>
 
             <article className="nb-problem-card">
@@ -414,7 +427,9 @@ export default function HeroProblem() {
                 is valid or invalid, teams can assess the result alongside
                 their data quality and campaign requirements.
               </p>
-              <span className="nb-problem-card-arrow" aria-hidden="true">↗</span>
+              <span className="nb-problem-card-arrow" aria-hidden="true">
+                ↗
+              </span>
             </article>
           </div>
 

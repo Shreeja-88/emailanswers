@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from "react";
 import "./Navbar.css";
 import logo from "../../assets/emailanswers-logo.png";
@@ -10,12 +11,16 @@ const homeNavLinks = [
   { name: "FAQ", href: "/#faq" },
 ];
 
+
 const comparisonNavLinks = [
-  { name: "How it works", href: "/#how" },
-  { name: "Product", href: "/#product" },
+  { name: "How it works", href: "#how" },
   { name: "Compare", href: "#compare" },
-  { name: "Pricing", href: "/#pricing" },
+  { name: "Pricing", href: "#pricing" },
+  { name: "Team fit", href: "#fair" },
+  { name: "Switch", href: "#switch" },
+  { name: "FAQ", href: "#faq" },
 ];
+
 
 function Navbar({ variant = "default" }) {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -88,7 +93,7 @@ function Navbar({ variant = "default" }) {
             ))}
           </div>
 
-          {/* Desktop actions — visible on both pages */}
+          {/* Desktop actions */}
           <div className="navbar-actions">
             {!isComparison && (
               <a
@@ -148,7 +153,7 @@ function Navbar({ variant = "default" }) {
             ))}
           </div>
 
-          {/* Mobile actions — visible on both pages */}
+          {/* Mobile actions */}
           <div className="navbar-mobile-actions">
             {!isComparison && (
               <a

@@ -1,4 +1,4 @@
-
+﻿
 import { useEffect, useRef, useState } from "react";
 import HeroProblem from "./sections/HeroProblem";
 import Navbar from "../../components/Navbar/Navbar";
@@ -26,12 +26,14 @@ function PageFooter() {
           <span>are worth reaching.</span>
         </h2>
 
-        <a className="nb-footer-cta-button" href="/signup">
+        <a
+          className="nb-footer-cta-button"
+          href="https://app.emailanswers.ai/signup"
+        >
           Get 250 credits <span aria-hidden="true">↗</span>
         </a>
       </div>
 
-      {/* Continuous scrolling wordmark */}
       <div className="nb-footer-watermark" aria-hidden="true">
         <div className="nb-footer-marquee-track">
           {[0, 1].map((group) => (
@@ -44,7 +46,6 @@ function PageFooter() {
         </div>
       </div>
 
-      {/* Stationary divider */}
       <div className="nb-footer-divider" />
 
       <div className="nb-footer-top">
@@ -74,14 +75,14 @@ function PageFooter() {
           <h3>Company</h3>
           <a href="/#about">About us</a>
           <a href="/#contact">Contact</a>
-          <a href="/#faq">FAQ</a>
+          <a href="#faq">FAQ</a>
         </div>
 
         <div className="nb-footer-column">
           <h3>Product</h3>
           <a href="/#product">Features</a>
           <a href="/#how">How it works</a>
-          <a href="/#pricing">Pricing</a>
+          <a href="#pricing">Pricing</a>
         </div>
 
         <div className="nb-footer-column">
@@ -139,7 +140,10 @@ function TLDR() {
     const startTime = performance.now();
 
     const animate = (currentTime) => {
-      const progress = Math.min((currentTime - startTime) / duration, 1);
+      const progress = Math.min(
+        (currentTime - startTime) / duration,
+        1
+      );
 
       setCountedPoints(
         targets.map((target) => Math.floor(target * progress))
@@ -339,7 +343,10 @@ function FinalCTA() {
           verification workflow.
         </p>
 
-        <a className="nb-button nb-button-dark" href="/#pricing">
+        <a
+          className="nb-button nb-button-dark"
+          href="https://app.emailanswers.ai/signup"
+        >
           Explore EmailAnswers AI <span aria-hidden="true">↗</span>
         </a>
       </div>
@@ -357,7 +364,7 @@ export default function NeverBounce() {
         <TLDR />
 
         <SectionPlaceholder
-          id="compare"
+          id="compare-intro"
           number="03"
           eyebrow="SIDE BY SIDE"
           title="Compare the features"
@@ -366,7 +373,9 @@ export default function NeverBounce() {
 
         <Comparison />
 
-        <TeamFitTestimonial />
+        <div id="fair">
+          <TeamFitTestimonial />
+        </div>
 
         <SectionPlaceholder
           id="switch"

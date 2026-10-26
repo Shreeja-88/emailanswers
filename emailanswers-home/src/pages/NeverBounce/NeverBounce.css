@@ -6050,3 +6050,22 @@ body,
     transform: none;
   }
 }
+
+.nb-page #how,
+.nb-page #product,
+.nb-page #compare,
+.nb-page #pricing,
+.nb-page #fair,
+.nb-page #switch,
+.nb-page #faq,
+.nb-page #tldr,
+.nb-page #problem {
+  scroll-margin-top: 110px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .nb-page {
+    scroll-behavior: smooth;
+  }
+}
+
