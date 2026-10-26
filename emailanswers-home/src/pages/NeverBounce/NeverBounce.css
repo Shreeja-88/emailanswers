@@ -6050,3 +6050,62 @@ body,
     transform: none;
   }
 }
+/* ==========================================================
+   HORIZONTAL OVERFLOW SAFETY FIX
+   Keep intentional hero/footer animations from widening the page.
+   Appended last so it wins over earlier duplicate overrides.
+========================================================== */
+
+.nb-page {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: clip;
+}
+
+/* The signal hero contains oversized atmospheric glows and orbits.
+   Clip those visuals at the hero boundary without disabling animation. */
+.nb-page .signal-hero {
+  max-width: 100%;
+  overflow-x: clip !important;
+}
+
+.nb-page .signal-hero__atmosphere {
+  max-width: 100%;
+}
+
+/* Keep the animated visualization sized to its layout column. */
+.nb-page .signal-stage {
+  min-width: 0;
+  max-width: 100%;
+}
+
+/* Prevent flex/grid children with intrinsic widths from widening the page. */
+.nb-page .nb-tldr-layout,
+.nb-page .nb-summary,
+.nb-page .nb-section,
+.nb-page .nb-footer,
+.nb-page .signal-hero,
+.nb-page .signal-stage {
+  min-width: 0;
+}
+
+.nb-page img,
+.nb-page svg,
+.nb-page video,
+.nb-page canvas {
+  max-width: 100%;
+}
+
+@media (max-width: 760px) {
+  .nb-page .signal-hero {
+    overflow-x: clip !important;
+  }
+
+  .nb-page .signal-float--left {
+    left: 0 !important;
+  }
+
+  .nb-page .signal-float--right {
+    right: 0 !important;
+  }
+}
