@@ -1,4 +1,4 @@
-
+﻿
 import Navbar from "../../components/Navbar/Navbar";
 import HeroProblem from "./sections/HeroProblem";
 import TLDR from "./sections/TLDR";
@@ -19,12 +19,14 @@ function PageFooter() {
           <span>are worth reaching.</span>
         </h2>
 
-        <a className="nb-footer-cta-button" href="/signup">
+        <a
+          className="nb-footer-cta-button"
+          href="https://app.emailanswers.ai/signup"
+        >
           Get 250 credits <span aria-hidden="true">↗</span>
         </a>
       </div>
 
-      {/* Continuous scrolling wordmark */}
       <div className="nb-footer-watermark" aria-hidden="true">
         <div className="nb-footer-marquee-track">
           {[0, 1].map((group) => (
@@ -66,14 +68,14 @@ function PageFooter() {
           <h3>Company</h3>
           <a href="/#about">About us</a>
           <a href="/#contact">Contact</a>
-          <a href="/#faq">FAQ</a>
+          <a href="#faq">FAQ</a>
         </div>
 
         <div className="nb-footer-column">
           <h3>Product</h3>
           <a href="/#product">Features</a>
           <a href="/#how">How it works</a>
-          <a href="/#pricing">Pricing</a>
+          <a href="#pricing">Pricing</a>
         </div>
 
         <div className="nb-footer-column">
@@ -111,7 +113,9 @@ export default function NeverBounce() {
         <Comparison />
 
         {/* Person 4: Team fit + testimonial */}
-        <TeamFitTestimonial />
+        <div id="fair">
+          <TeamFitTestimonial />
+        </div>
 
         {/* Person 5: Switching guide + final CTA */}
         <SwitchingCTA />
