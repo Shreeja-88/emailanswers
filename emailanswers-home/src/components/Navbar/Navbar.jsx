@@ -1,14 +1,17 @@
 import { useEffect, useState } from "react";
 import "./Navbar.css";
 import logo from "../../assets/emailanswers-logo.png";
+import { Link } from "react-router-dom";
 
 const navLinks = [
   { name: "How it works", href: "#how" },
   { name: "Product", href: "#product" },
+  { name: "Compare", href: "/alternatives/neverbounce" },
   { name: "For agencies", href: "#agencies" },
   { name: "Pricing", href: "#pricing" },
   { name: "FAQ", href: "#faq" },
 ];
+
 
 function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -64,32 +67,45 @@ function Navbar() {
 
 
         {/* Desktop Navigation */}
-        <div className="navbar-content">
-          <div className="navbar-links">
-            {navLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                className="navbar-link"
-              >
-                {link.name}
-              </a>
-            ))}
-          </div>
+<div className="navbar-content">
+  <div className="navbar-links">
+    {navLinks.map((link) =>
+      link.href.startsWith("/") ? (
+        <Link
+          key={link.name}
+          to={link.href}
+          className="navbar-link"
+        >
+          {link.name}
+        </Link>
+      ) : (
+        <a
+          key={link.name}
+          href={link.href}
+          className="navbar-link"
+        >
+          {link.name}
+        </a>
+      )
+    )}
+  </div>
 
-          <div className="navbar-actions">
-            <a
-              href="https://app.emailanswers.ai/login"
-              className="navbar-login"
-            >
-              Login
-            </a>
+  <div className="navbar-actions">
+    <a
+      href="https://app.emailanswers.ai/login"
+      className="navbar-login"
+    >
+      Login
+    </a>
 
-            <a href="https://app.emailanswers.ai/signup" className="navbar-cta">
-              Get 250 credits <span aria-hidden="true">↗</span>
-            </a>
-          </div>
-        </div>
+    <a
+      href="https://app.emailanswers.ai/signup"
+      className="navbar-cta"
+    >
+      Get 250 credits <span aria-hidden="true">↗</span>
+    </a>
+  </div>
+</div>
 
         {/* Mobile Menu Toggle */}
         <button
@@ -116,19 +132,32 @@ function Navbar() {
           inert={!menuOpen}
         >
           <div className="navbar-mobile-links">
-            {navLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                className="navbar-mobile-link"
-                onClick={closeMenu}
-                tabIndex={menuOpen ? 0 : -1}
-              >
-                {link.name}
-                <span aria-hidden="true">↗</span>
-              </a>
-            ))}
-          </div>
+  {navLinks.map((link) =>
+    link.href.startsWith("/") ? (
+      <Link
+        key={link.name}
+        to={link.href}
+        className="navbar-mobile-link"
+        onClick={closeMenu}
+        tabIndex={menuOpen ? 0 : -1}
+      >
+        {link.name}
+        <span aria-hidden="true">↗</span>
+      </Link>
+    ) : (
+      <a
+        key={link.name}
+        href={link.href}
+        className="navbar-mobile-link"
+        onClick={closeMenu}
+        tabIndex={menuOpen ? 0 : -1}
+      >
+        {link.name}
+        <span aria-hidden="true">↗</span>
+      </a>
+    )
+  )}
+</div>
 
           <div className="navbar-mobile-actions">
             <a

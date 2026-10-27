@@ -7,6 +7,7 @@ import logo from "../../assets/emailanswers-logo.png";
 import TeamFitTestimonial from "./sections/TeamFitTestimonial";
 import SwitchingCTA from "./sections/SwitchingCTA";
 import Comparison from "./sections/Comparison";
+import FAQ from "./sections/FAQ";
 
 const pageSections = [
   { id: "tldr", label: "The short answer" },
@@ -373,13 +374,7 @@ export default function NeverBounce() {
 
         
 
-        <SectionPlaceholder
-          id="faq"
-          number="06"
-          eyebrow="COMMON QUESTIONS"
-          title="Frequently asked questions"
-          description="Answers about catch-all verification, switching tools, integrations, and pricing will appear here."
-        />
+        <FAQ />
       </main>
 
       <PageFooter />
