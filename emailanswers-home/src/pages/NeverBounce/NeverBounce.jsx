@@ -5,6 +5,17 @@ import TLDR from "./sections/TLDR";
 import Comparison from "./sections/Comparison";
 import TeamFitTestimonial from "./sections/TeamFitTestimonial";
 import SwitchingCTA from "./sections/SwitchingCTA";
+import Comparison from "./sections/Comparison";
+import FAQ from "./sections/FAQ";
+
+const pageSections = [
+  { id: "tldr", label: "The short answer" },
+  { id: "problem", label: "Where NeverBounce falls short" },
+  { id: "compare", label: "Feature comparison" },
+  { id: "fair", label: "Which one fits you" },
+  { id: "switch", label: "How to switch" },
+  { id: "faq", label: "FAQ" },
+];
 import FAQ from "./sections/FAQ";
 import "./NeverBounce.css";
 import logo from "../../assets/emailanswers-logo.png";
@@ -119,6 +130,8 @@ export default function NeverBounce() {
 
         {/* Person 5: Switching guide + final CTA */}
         <SwitchingCTA />
+
+        
 
         {/* Person 6: FAQs */}
         <FAQ />
