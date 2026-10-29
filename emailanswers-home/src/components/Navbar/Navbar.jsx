@@ -1,22 +1,38 @@
+
 import { useEffect, useState } from "react";
 import "./Navbar.css";
 import logo from "../../assets/emailanswers-logo.png";
 import { Link } from "react-router-dom";
 
-const navLinks = [
+const homeNavLinks = [
+  { name: "How it works", href: "/#how" },
+  { name: "Product", href: "/#product" },
+  { name: "For agencies", href: "/#agencies" },
+  { name: "Pricing", href: "/#pricing" },
+  { name: "FAQ", href: "/#faq" },
+];
+
+
+const comparisonNavLinks = [
   { name: "How it works", href: "#how" },
   { name: "Product", href: "#product" },
   { name: "Compare", href: "/alternatives/neverbounce" },
   { name: "For agencies", href: "#agencies" },
+  { name: "Compare", href: "#compare" },
   { name: "Pricing", href: "#pricing" },
+  { name: "Team fit", href: "#fair" },
+  { name: "Switch", href: "#switch" },
   { name: "FAQ", href: "#faq" },
 ];
 
 
 function Navbar() {
+function Navbar({ variant = "default" }) {
   const [menuOpen, setMenuOpen] = useState(false);
 
-  // Close the menu when Escape is pressed.
+  const isComparison = variant === "comparison";
+  const navLinks = isComparison ? comparisonNavLinks : homeNavLinks;
+
   useEffect(() => {
     if (!menuOpen) return;
 
@@ -33,7 +49,6 @@ function Navbar() {
     };
   }, [menuOpen]);
 
-  // Prevent background scrolling while the mobile menu is open.
   useEffect(() => {
     if (!menuOpen) return;
 
@@ -50,9 +65,13 @@ function Navbar() {
   return (
     <header className="navbar" id="top">
       <nav className="navbar-inner" aria-label="Main navigation">
-
         {/* Brand */}
-        <a href="/" className="navbar-brand" aria-label="EmailAnswers AI home">
+        <a
+          href="/"
+          className="navbar-brand"
+          aria-label="EmailAnswers AI home"
+          onClick={closeMenu}
+        >
           <img
             src={logo}
             alt=""
@@ -106,29 +125,63 @@ function Navbar() {
     </a>
   </div>
 </div>
+        {/* Desktop navigation */}
+        <div className="navbar-content">
+          <div className="navbar-links">
+            {navLinks.map((link) => (
+              <a
+                key={link.name}
+                href={link.href}
+                className="navbar-link"
+              >
+                {link.name}
+              </a>
+            ))}
+          </div>
 
-        {/* Mobile Menu Toggle */}
+          {/* Desktop actions */}
+          <div className="navbar-actions">
+            {!isComparison && (
+              <a
+                href="https://app.emailanswers.ai/login"
+                className="navbar-login"
+              >
+                Login
+              </a>
+            )}
+
+            <a
+              href="https://app.emailanswers.ai/signup"
+              className="navbar-cta"
+            >
+              Verify 100 emails free{" "}
+              <span aria-hidden="true">↗</span>
+            </a>
+          </div>
+        </div>
+
+        {/* Mobile menu button */}
         <button
           type="button"
           className={`navbar-menu-toggle ${
             menuOpen ? "is-open" : ""
           }`}
-          aria-label={menuOpen ? "Close navigation menu" : "Open navigation menu"}
+          aria-label={
+            menuOpen ? "Close navigation menu" : "Open navigation menu"
+          }
           aria-expanded={menuOpen}
           aria-controls="mobile-navigation"
           onClick={() => setMenuOpen((previous) => !previous)}
         >
-          <span></span>
-          <span></span>
-          <span></span>
+          <span />
+          <span />
+          <span />
         </button>
 
-        {/* Mobile Navigation */}
+        {/* Mobile navigation */}
         <div
           id="mobile-navigation"
-          className={`navbar-mobile ${
-            menuOpen ? "is-open" : ""
-          }`}
+          className={`navbar-mobile ${menuOpen ? "is-open" : ""}`}
           inert={!menuOpen}
         >
           <div className="navbar-mobile-links">
@@ -159,15 +212,18 @@ function Navbar() {
   )}
 </div>
 
+          {/* Mobile actions */}
           <div className="navbar-mobile-actions">
-            <a
-              href="https://app.emailanswers.ai/login"
-              className="navbar-mobile-login"
-              onClick={closeMenu}
-              tabIndex={menuOpen ? 0 : -1}
-            >
-              Login
-            </a>
+            {!isComparison && (
+              <a
+                href="https://app.emailanswers.ai/login"
+                className="navbar-mobile-login"
+                onClick={closeMenu}
+                tabIndex={menuOpen ? 0 : -1}
+              >
+                Login
+              </a>
+            )}
 
             <a
               href="https://app.emailanswers.ai/signup"
@@ -175,11 +231,11 @@ function Navbar() {
               onClick={closeMenu}
               tabIndex={menuOpen ? 0 : -1}
             >
-              Get 250 credits <span aria-hidden="true">↗</span>
+              Verify 100 emails free{" "}
+              <span aria-hidden="true">↗</span>
             </a>
           </div>
         </div>
-
       </nav>
     </header>
   );

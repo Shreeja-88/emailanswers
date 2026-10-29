@@ -6050,3 +6050,41 @@ body,
     transform: none;
   }
 }
+
+/* Horizontal overflow fix */
+.nb-page {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  overflow-x: clip;
+}
+
+.nb-page .nb-hero,
+.nb-page .nb-hero-content,
+.nb-page .nb-section,
+.nb-page .nb-cta-section,
+.nb-page .nb-footer {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.nb-page .nb-tldr-layout > *,
+.nb-page .nb-footer-grid > *,
+.nb-page .nb-hero-preview > * {
+  min-width: 0;
+}
+
+@media (max-width: 520px) {
+  .nb-page .nb-nav {
+    gap: 8px;
+    padding-inline: 12px;
+  }
+
+  .nb-page .nb-logo {
+    min-width: 0;
+  }
+
+  .nb-page .nb-nav > .nb-button {
+    flex-shrink: 0;
+  }
+}
