@@ -11,6 +11,7 @@ function HomePage() {
   return (
     <>
       <Navbar />
+
       <main>
         <Hero />
         <HowItWorks />
@@ -19,6 +20,7 @@ function HomePage() {
         <Pricing />
         <FAQ />
       </main>
+
       <Footer />
     </>
   );

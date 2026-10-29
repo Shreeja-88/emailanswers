@@ -1,8 +1,8 @@
 
 import { useEffect, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import "./Navbar.css";
 import logo from "../../assets/emailanswers-logo.png";
-import { Link } from "react-router-dom";
 
 const homeNavLinks = [
   { name: "How it works", href: "/#how" },
@@ -26,12 +26,50 @@ const comparisonNavLinks = [
 
 function Navbar({ variant = "default" }) {
   const [menuOpen, setMenuOpen] = useState(false);
+  const location = useLocation();
 
   const isComparison = variant === "comparison";
   const navLinks = isComparison
     ? comparisonNavLinks
     : homeNavLinks;
 
+  // Scroll to the requested section after route navigation.
+  useEffect(() => {
+    if (!location.hash) return;
+
+    const sectionId = decodeURIComponent(
+      location.hash.slice(1)
+    );
+
+    let attempts = 0;
+    let timeoutId;
+
+    const scrollToSection = () => {
+      const section = document.getElementById(sectionId);
+
+      if (section) {
+        section.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+        return;
+      }
+
+      // Retry briefly while page sections are mounting.
+      if (attempts < 10) {
+        attempts += 1;
+        timeoutId = setTimeout(scrollToSection, 100);
+      }
+    };
+
+    requestAnimationFrame(scrollToSection);
+
+    return () => {
+      if (timeoutId) clearTimeout(timeoutId);
+    };
+  }, [location.pathname, location.hash]);
+
+  // Close the mobile menu when pressing Escape.
   useEffect(() => {
     if (!menuOpen) return;
 
@@ -48,6 +86,7 @@ function Navbar({ variant = "default" }) {
     };
   }, [menuOpen]);
 
+  // Prevent background scrolling while the mobile menu is open.
   useEffect(() => {
     if (!menuOpen) return;
 
@@ -75,31 +114,46 @@ function Navbar({ variant = "default" }) {
     const content = (
       <>
         {link.name}
-        {mobile && <span aria-hidden="true">↗</span>}
+        {mobile && (
+          <span aria-hidden="true">↗</span>
+        )}
       </>
     );
 
-    if (link.href.startsWith("/")) {
+    // Same-page section links.
+    if (link.href.startsWith("#")) {
       return (
-        <Link key={link.name} to={link.href} {...commonProps}>
+        <a
+          key={link.name}
+          href={link.href}
+          {...commonProps}
+        >
           {content}
-        </Link>
+        </a>
       );
     }
 
+    // Internal React Router navigation.
     return (
-      <a key={link.name} href={link.href} {...commonProps}>
+      <Link
+        key={link.name}
+        to={link.href}
+        {...commonProps}
+      >
         {content}
-      </a>
+      </Link>
     );
   };
 
   return (
     <header className="navbar" id="top">
-      <nav className="navbar-inner" aria-label="Main navigation">
+      <nav
+        className="navbar-inner"
+        aria-label="Main navigation"
+      >
         {/* Brand */}
-        <a
-          href="/"
+        <Link
+          to="/"
           className="navbar-brand"
           aria-label="EmailAnswers AI home"
           onClick={closeMenu}
@@ -112,14 +166,17 @@ function Navbar({ variant = "default" }) {
           />
 
           <span className="brand-name">
-            EmailAnswers<span className="brand-ai">AI</span>
+            EmailAnswers
+            <span className="brand-ai">AI</span>
           </span>
-        </a>
+        </Link>
 
         {/* Desktop navigation */}
         <div className="navbar-content">
           <div className="navbar-links">
-            {navLinks.map((link) => renderNavLink(link))}
+            {navLinks.map((link) =>
+              renderNavLink(link)
+            )}
           </div>
 
           <div className="navbar-actions">
@@ -158,7 +215,9 @@ function Navbar({ variant = "default" }) {
           }
           aria-expanded={menuOpen}
           aria-controls="mobile-navigation"
-          onClick={() => setMenuOpen((previous) => !previous)}
+          onClick={() =>
+            setMenuOpen((previous) => !previous)
+          }
         >
           <span />
           <span />
@@ -174,10 +233,11 @@ function Navbar({ variant = "default" }) {
           inert={!menuOpen}
         >
           <div className="navbar-mobile-links">
-            {navLinks.map((link) => renderNavLink(link, true))}
+            {navLinks.map((link) =>
+              renderNavLink(link, true)
+            )}
           </div>
 
-          {/* Mobile actions */}
           <div className="navbar-mobile-actions">
             {!isComparison && (
               <a
