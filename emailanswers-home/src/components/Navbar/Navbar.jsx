@@ -10,28 +10,27 @@ const homeNavLinks = [
   { name: "For agencies", href: "/#agencies" },
   { name: "Pricing", href: "/#pricing" },
   { name: "FAQ", href: "/#faq" },
+  { name: "Compare", href: "/alternatives/neverbounce" },
 ];
-
 
 const comparisonNavLinks = [
   { name: "How it works", href: "#how" },
   { name: "Product", href: "#product" },
-  { name: "Compare", href: "/alternatives/neverbounce" },
-  { name: "For agencies", href: "#agencies" },
   { name: "Compare", href: "#compare" },
+  { name: "For agencies", href: "#agencies" },
   { name: "Pricing", href: "#pricing" },
   { name: "Team fit", href: "#fair" },
   { name: "Switch", href: "#switch" },
   { name: "FAQ", href: "#faq" },
 ];
 
-
-function Navbar() {
 function Navbar({ variant = "default" }) {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const isComparison = variant === "comparison";
-  const navLinks = isComparison ? comparisonNavLinks : homeNavLinks;
+  const navLinks = isComparison
+    ? comparisonNavLinks
+    : homeNavLinks;
 
   useEffect(() => {
     if (!menuOpen) return;
@@ -62,6 +61,39 @@ function Navbar({ variant = "default" }) {
 
   const closeMenu = () => setMenuOpen(false);
 
+  const renderNavLink = (link, mobile = false) => {
+    const className = mobile
+      ? "navbar-mobile-link"
+      : "navbar-link";
+
+    const commonProps = {
+      className,
+      onClick: mobile ? closeMenu : undefined,
+      ...(mobile ? { tabIndex: menuOpen ? 0 : -1 } : {}),
+    };
+
+    const content = (
+      <>
+        {link.name}
+        {mobile && <span aria-hidden="true">↗</span>}
+      </>
+    );
+
+    if (link.href.startsWith("/")) {
+      return (
+        <Link key={link.name} to={link.href} {...commonProps}>
+          {content}
+        </Link>
+      );
+    }
+
+    return (
+      <a key={link.name} href={link.href} {...commonProps}>
+        {content}
+      </a>
+    );
+  };
+
   return (
     <header className="navbar" id="top">
       <nav className="navbar-inner" aria-label="Main navigation">
@@ -84,62 +116,12 @@ function Navbar({ variant = "default" }) {
           </span>
         </a>
 
-
-        {/* Desktop Navigation */}
-<div className="navbar-content">
-  <div className="navbar-links">
-    {navLinks.map((link) =>
-      link.href.startsWith("/") ? (
-        <Link
-          key={link.name}
-          to={link.href}
-          className="navbar-link"
-        >
-          {link.name}
-        </Link>
-      ) : (
-        <a
-          key={link.name}
-          href={link.href}
-          className="navbar-link"
-        >
-          {link.name}
-        </a>
-      )
-    )}
-  </div>
-
-  <div className="navbar-actions">
-    <a
-      href="https://app.emailanswers.ai/login"
-      className="navbar-login"
-    >
-      Login
-    </a>
-
-    <a
-      href="https://app.emailanswers.ai/signup"
-      className="navbar-cta"
-    >
-      Get 250 credits <span aria-hidden="true">↗</span>
-    </a>
-  </div>
-</div>
         {/* Desktop navigation */}
         <div className="navbar-content">
           <div className="navbar-links">
-            {navLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                className="navbar-link"
-              >
-                {link.name}
-              </a>
-            ))}
+            {navLinks.map((link) => renderNavLink(link))}
           </div>
 
-          {/* Desktop actions */}
           <div className="navbar-actions">
             {!isComparison && (
               <a
@@ -154,7 +136,10 @@ function Navbar({ variant = "default" }) {
               href="https://app.emailanswers.ai/signup"
               className="navbar-cta"
             >
-              Verify 100 emails free{" "}
+              {isComparison
+                ? "Get 250 credits"
+                : "Verify 100 emails free"}
+              {" "}
               <span aria-hidden="true">↗</span>
             </a>
           </div>
@@ -167,7 +152,9 @@ function Navbar({ variant = "default" }) {
             menuOpen ? "is-open" : ""
           }`}
           aria-label={
-            menuOpen ? "Close navigation menu" : "Open navigation menu"
+            menuOpen
+              ? "Close navigation menu"
+              : "Open navigation menu"
           }
           aria-expanded={menuOpen}
           aria-controls="mobile-navigation"
@@ -181,36 +168,14 @@ function Navbar({ variant = "default" }) {
         {/* Mobile navigation */}
         <div
           id="mobile-navigation"
-          className={`navbar-mobile ${menuOpen ? "is-open" : ""}`}
+          className={`navbar-mobile ${
+            menuOpen ? "is-open" : ""
+          }`}
           inert={!menuOpen}
         >
           <div className="navbar-mobile-links">
-  {navLinks.map((link) =>
-    link.href.startsWith("/") ? (
-      <Link
-        key={link.name}
-        to={link.href}
-        className="navbar-mobile-link"
-        onClick={closeMenu}
-        tabIndex={menuOpen ? 0 : -1}
-      >
-        {link.name}
-        <span aria-hidden="true">↗</span>
-      </Link>
-    ) : (
-      <a
-        key={link.name}
-        href={link.href}
-        className="navbar-mobile-link"
-        onClick={closeMenu}
-        tabIndex={menuOpen ? 0 : -1}
-      >
-        {link.name}
-        <span aria-hidden="true">↗</span>
-      </a>
-    )
-  )}
-</div>
+            {navLinks.map((link) => renderNavLink(link, true))}
+          </div>
 
           {/* Mobile actions */}
           <div className="navbar-mobile-actions">
@@ -231,7 +196,10 @@ function Navbar({ variant = "default" }) {
               onClick={closeMenu}
               tabIndex={menuOpen ? 0 : -1}
             >
-              Verify 100 emails free{" "}
+              {isComparison
+                ? "Get 250 credits"
+                : "Verify 100 emails free"}
+              {" "}
               <span aria-hidden="true">↗</span>
             </a>
           </div>

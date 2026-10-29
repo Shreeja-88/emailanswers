@@ -5,8 +5,6 @@ import TLDR from "./sections/TLDR";
 import Comparison from "./sections/Comparison";
 import TeamFitTestimonial from "./sections/TeamFitTestimonial";
 import SwitchingCTA from "./sections/SwitchingCTA";
-import Comparison from "./sections/Comparison";
-import FAQ from "./sections/FAQ";
 
 const pageSections = [
   { id: "tldr", label: "The short answer" },
